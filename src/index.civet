@@ -1,4 +1,6 @@
 // @ts-nocheck
+'civet coffeePrototype'
+
 data from ./data.civet
 { optimize, sum } from ./optimize.civet
 
@@ -65,8 +67,13 @@ document.querySelector 'form'
             }
             document.getElementById('inward-drift').value
         document.getElementById('output').innerHTML = results
-            .map (el) => [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders].join '; '
-            .join '<br>'
+            .map (el) => `<tr><td>${
+                [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders
+                    ].map(
+                        .map((name) => `<img src="./img/${name}.png" alt="${name}"/>`).join ' '
+                    ).join '</td><td>'
+            }</td></tr>`
+            .join ''
         if results.# > 0
             setPreviewedKart
                 data.characters.indexOf results.0.0
@@ -92,6 +99,7 @@ for each statBlock, i of data.characters
 kartPreview.appendChild characterLabel
 kartPreview.append ' '
 kartPreview.appendChild characterDropdown
+characterImg := document.createElement 'img' ||> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 kartLabel := document.createElement 'label'
@@ -107,6 +115,7 @@ for each statBlock, i of data.karts
 kartPreview.appendChild kartLabel
 kartPreview.append ' '
 kartPreview.appendChild kartDropdown
+kartImg := document.createElement 'img' ||> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 wheelLabel := document.createElement 'label'
@@ -122,6 +131,7 @@ for each statBlock, i of data.wheels
 kartPreview.appendChild wheelLabel
 kartPreview.append ' '
 kartPreview.appendChild wheelDropdown
+wheelImg := document.createElement 'img' ||> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 gliderLabel := document.createElement 'label'
@@ -137,6 +147,9 @@ for each statBlock, i of data.gliders
 kartPreview.appendChild gliderLabel
 kartPreview.append ' '
 kartPreview.appendChild gliderDropdown
+gliderImg := document.createElement 'img' ||> kartPreview.appendChild 
+kartPreview.appendChild document.createElement 'br'
+
 kartPreview.appendChild document.createElement 'br'
 
 statsDisplay := document.createElement 'div'
@@ -144,9 +157,13 @@ statsDisplay := document.createElement 'div'
 
 updatePreview := :void =>
     character := data.characters[characterDropdown.value]
+    characterImg.src = `./img/${Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
     kart := data.karts[kartDropdown.value]
+    kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
     wheel := data.wheels[wheelDropdown.value]
+    wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
     glider := data.gliders[gliderDropdown.value]
+    gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
     statBlock := sum character, kart, wheel, glider
     statsDisplay.innerHTML = ```
         <table><tbody>

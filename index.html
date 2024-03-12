@@ -7,6 +7,19 @@
       meter {
         width: 18em;
       }
+      img {
+        width: 2.5em;
+      }
+      #output td {
+        padding: 0 0.5em;
+      }
+      select[id$="-select"] {
+        margin-bottom: 1.5em;
+      }
+      #kart-preview img {
+        margin-bottom: -0.75em;
+        margin-left: 0.25em;
+      }
     </style>
   </head>
   <body>
@@ -240,7 +253,17 @@
       <br />
       <button type="submit" id="submit">Go!</button>
     </form>
-    <div id="output"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Character</th>
+          <th>Kart</th>
+          <th>Wheels</th>
+          <th>Glider</th>
+        </tr>
+      </thead>
+      <tbody id="output"></tbody>
+    </table>
     <hr />
     <div id="kart-preview">Loading...</div>
   </body>
