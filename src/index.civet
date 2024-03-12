@@ -77,15 +77,17 @@ document.querySelector 'form'
 kartPreview := document.getElementById 'kart-preview'
 kartPreview.innerHTML = ''
 
+rgx := /(?<=[^A-Z])[A-Z]|(?!^)[A-Z][a-z]|(?<=\D)\d/g
+
 characterLabel := document.createElement 'label'
-characterLabel.innerHTML = 'Character'
+characterLabel.textContent = 'Character'
 characterDropdown := document.createElement 'select'
 characterLabel.htmlFor = characterDropdown.id = 'character-select'
 for each statBlock, i of data.characters
     for name of statBlock.characters
         document.createElement 'option'
             ||> .value = i
-            ||> .innerHTML = name
+            ||> .textContent = name.replace rgx, ' $&'
             |> characterDropdown.appendChild
 kartPreview.appendChild characterLabel
 kartPreview.append ' '
@@ -93,14 +95,14 @@ kartPreview.appendChild characterDropdown
 kartPreview.appendChild document.createElement 'br'
 
 kartLabel := document.createElement 'label'
-kartLabel.innerHTML = 'Kart'
+kartLabel.textContent = 'Kart'
 kartDropdown := document.createElement 'select'
 kartLabel.htmlFor = kartDropdown.id = 'kart-select'
 for each statBlock, i of data.karts
     for name of statBlock.karts
         document.createElement 'option'
             ||> .value = i
-            ||> .innerHTML = name
+            ||> .textContent = name.replace rgx, ' $&'
             |> kartDropdown.appendChild
 kartPreview.appendChild kartLabel
 kartPreview.append ' '
@@ -108,14 +110,14 @@ kartPreview.appendChild kartDropdown
 kartPreview.appendChild document.createElement 'br'
 
 wheelLabel := document.createElement 'label'
-wheelLabel.innerHTML = 'Wheels'
+wheelLabel.textContent = 'Wheels'
 wheelDropdown := document.createElement 'select'
 wheelLabel.htmlFor = wheelDropdown.id = 'wheel-select'
 for each statBlock, i of data.wheels
     for name of statBlock.wheels
         document.createElement 'option'
             ||> .value = i
-            ||> .innerHTML = name
+            ||> .textContent = name.replace rgx, ' $&'
             |> wheelDropdown.appendChild
 kartPreview.appendChild wheelLabel
 kartPreview.append ' '
@@ -123,14 +125,14 @@ kartPreview.appendChild wheelDropdown
 kartPreview.appendChild document.createElement 'br'
 
 gliderLabel := document.createElement 'label'
-gliderLabel.innerHTML = 'Glider'
+gliderLabel.textContent = 'Glider'
 gliderDropdown := document.createElement 'select'
 gliderLabel.htmlFor = gliderDropdown.id = 'glider-select'
 for each statBlock, i of data.gliders
     for name of statBlock.gliders
         document.createElement 'option'
             ||> .value = i
-            ||> .innerHTML = name
+            ||> .textContent = name.replace rgx, ' $&'
             |> gliderDropdown.appendChild
 kartPreview.appendChild gliderLabel
 kartPreview.append ' '
@@ -146,21 +148,30 @@ updatePreview := :void =>
     wheel := data.wheels[wheelDropdown.value]
     glider := data.gliders[gliderDropdown.value]
     statBlock := sum character, kart, wheel, glider
-    statsDisplay.innerText = ```
-        Speed: ${statBlock.speed.land} (land), ${statBlock.speed.water} (water), ${statBlock.speed.air} (air), ${statBlock.speed.antigrav} (antigravity)
-        Acceleration: ${statBlock.accel}
-        Weight: ${statBlock.weight}
-        Handling: ${statBlock.handling.land} (land), ${statBlock.handling.water} (water), ${statBlock.handling.air} (air), ${statBlock.handling.antigrav} (antigravity)
-        Traction: ${statBlock.traction}
-        Mini-Turbo: ${statBlock.miniTurbo}
-        Invulnerability: ${statBlock.invuln}
+    statsDisplay.innerHTML = ```
+        <table><tbody>
+        <tr><td><label for="land-speed-prev">Land speed</label></td><td><meter id="land-speed-prev" max="6" value="${statBlock.speed.land}">${statBlock.speed.land}</meter></td><td>${statBlock.speed.land}</td></tr>
+        <tr><td><label for="water-speed-prev">Water speed</label></td><td><meter id="water-speed-prev" max="6" value="${statBlock.speed.water}">${statBlock.speed.water}</meter></td><td>${statBlock.speed.water}</td></tr>
+        <tr><td><label for="air-speed-prev">Air speed</label></td><td><meter id="air-speed-prev" max="6" value="${statBlock.speed.air}">${statBlock.speed.air}</meter></td><td>${statBlock.speed.air}</td></tr>
+        <tr><td><label for="antigrav-speed-prev">Antigravity speed</label></td><td><meter id="antigrav-speed-prev" max="6" value="${statBlock.speed.antigrav}">${statBlock.speed.antigrav}</meter></td><td>${statBlock.speed.antigrav}</td></tr>
+        <tr><td><label for="accel-prev">Acceleration</label></td><td><meter id="accel-prev" max="6" value="${statBlock.accel}">${statBlock.accel}</meter></td><td>${statBlock.accel}</td></tr>
+        <tr><td><label for="weight-prev">Weight</label></td><td><meter id="weight-prev" max="6" value="${statBlock.weight}">${statBlock.weight}</meter></td><td>${statBlock.weight}</td></tr>
+        <tr><td><label for="land-handling-prev">Land handling</label></td><td><meter id="land-handling-prev" max="6" value="${statBlock.handling.land}">${statBlock.handling.land}</meter></td><td>${statBlock.handling.land}</td></tr>
+        <tr><td><label for="water-handling-prev">Water handling</label></td><td><meter id="water-handling-prev" max="6" value="${statBlock.handling.water}">${statBlock.handling.water}</meter></td><td>${statBlock.handling.water}</td></tr>
+        <tr><td><label for="air-handling-prev">Air handling</label></td><td><meter id="air-handling-prev" max="6" value="${statBlock.handling.air}">${statBlock.handling.air}</meter></td><td>${statBlock.handling.air}</td></tr>
+        <tr><td><label for="antigrav-handling-prev">Antigravity handling</label></td><td><meter id="antigrav-handling-prev" max="6" value="${statBlock.handling.antigrav}">${statBlock.handling.antigrav}</meter></td><td>${statBlock.handling.antigrav}</td></tr>
+        <tr><td><label for="traction-prev">Traction</label></td><td><meter id="traction-prev" max="6" value="${statBlock.traction}">${statBlock.traction}</meter></td><td>${statBlock.traction}</td></tr>
+        <tr><td><label for="mini-turbo-prev">Mini-Turbo</label></td><td><meter id="mini-turbo-prev" max="6" value="${statBlock.miniTurbo}">${statBlock.miniTurbo}</meter></td><td>${statBlock.miniTurbo}</td></tr>
+        <tr><td><label for="invuln-prev">Invulnerability</label></td><td><meter id="invuln-prev" max="6" value="${statBlock.invuln}">${statBlock.invuln}</meter></td><td>${statBlock.invuln}</td></tr>
+        </tbody></table>
         ```
 updatePreview()
 
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
-function setPreviewedKart(character: number, kart: number, wheels: number, glider: number): void
+function setPreviewedKart(character: number, kart: number, wheels: number, glider: number)
     characterDropdown.value = character
     kartDropdown.value = kart
     wheelDropdown.value = wheels
     gliderDropdown.value = glider
+    updatePreview()
