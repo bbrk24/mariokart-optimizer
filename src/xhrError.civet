@@ -1,0 +1,9 @@
+export default class XHRError < Error
+    progress?: number
+    statusCode?: number
+
+    constructor(message: string, xhr: XMLHttpRequest, event: ProgressEvent<XMLHttpRequestEventTarget>)
+        super message
+        if event.lengthComputable
+            @progress = event.loaded / event.total
+        @statusCode = xhr.status || undefined

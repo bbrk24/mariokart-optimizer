@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mario Kart Optimizer</title>
+    <script defer type="module" src="src/index.js"></script>
+  </head>
+  <body>
+    <form>
+      <table>
+        <thead>
+          <tr>
+            <th>Stat</th>
+            <th>Min</th>
+            <th>Max</th>
+            <th>Optimize?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Land Speed</td>
+            <td>
+              <input id="land-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="land-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="land-speed-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Water Speed</td>
+            <td>
+              <input id="water-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="water-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="water-speed-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Air Speed</td>
+            <td>
+              <input id="air-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="air-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="air-speed-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Antigravity Speed</td>
+            <td>
+              <input id="antigrav-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="antigrav-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="antigrav-speed-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Acceleration</td>
+            <td>
+              <input id="accel-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="accel-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="accel-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>
+              <input id="weight-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="weight-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="weight-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Land Handling</td>
+            <td>
+              <input id="land-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="land-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="land-handling-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Water Handling</td>
+            <td>
+              <input id="water-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="water-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="water-handling-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Air Handling</td>
+            <td>
+              <input id="air-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="air-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="air-handling-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Antigravity Handling</td>
+            <td>
+              <input id="antigrav-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="antigrav-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="antigrav-handling-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Traction</td>
+            <td>
+              <input id="traction-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="traction-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="traction-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Mini-Turbo</td>
+            <td>
+              <input id="mini-turbo-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="mini-turbo-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="mini-turbo-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Invulnerability</td>
+            <td>
+              <input id="invuln-min" type="number" min="0" max="6" step="0.25" value="0"/>
+            </td>
+            <td>
+              <input id="invuln-max" type="number" min="0" max="6" step="0.25" value="6"/>
+            </td>
+            <td>
+              <select id="invuln-opt">
+                <option selected value="no">Don't Optimize</option>
+                <option value="min">Minimize</option>
+                <option value="max">Maximize</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <label for="inward-drift">Inward-drifting bikes</label>
+      <select id="inward-drift">
+        <option selected value="both">Included</option>
+        <option value="yes">Only</option>
+        <option value="no">Ignored</option>
+      </select>
+      <br />
+      <button type="submit" id="submit">Go!</button>
+    </form>
+    <div id="output"></div>
+  </body>
+</html>

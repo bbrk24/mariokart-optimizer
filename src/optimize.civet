@@ -1,0 +1,81 @@
+type * as Yaml from ./yamlTypes.civet
+YamlData ::= Yaml.YamlData
+
+interface Limits
+    min: number
+    max: number
+    opt: 'min' | 'max' | 'no'
+
+OptimizeMap<T> ::= { [K in keyof T]: T[K] < number ? Limits : OptimizeMap<T[K]> }
+
+export OptimizeOptions ::= OptimizeMap<Yaml.BaseStatBlock>
+
+sum := <T>(...args: T[]): T =>
+    sumHelper := (results: any) => (statBlock: any): void =>
+        for own prop, value in statBlock
+            if value <? 'number'
+                (results[prop] ?= 0) += value
+            else if value <? 'object' and not Array.isArray value
+                sumHelper(results[prop] ?= {}) value
+    results: any := {}      
+    args.forEach sumHelper results
+    return results
+
+optValue := (values: Yaml.BaseStatBlock, options: OptimizeOptions) =>
+    // TS is unhelpful anyways with 'for own'
+    helper := (options: any, statBlock: any) =>
+        runningSum .= 0
+        n .= 0
+        for own prop, value in statBlock
+            if value <? 'number'
+                if value < options[prop].min or value > options[prop].max
+                    return
+                if options[prop].opt is 'min'
+                    runningSum -= value
+                    ++n
+                else if options[prop].opt is 'max'
+                    runningSum += value
+                    ++n
+            else
+                recursive := helper options[prop], value
+                return unless recursive?
+                runningSum += recursive
+                ++n
+        return runningSum / (n || 1)
+    helper options, values
+
+maxOpts: OptimizeOptions :=
+    accel: min: 0, max: 6, opt: 'max'
+    invuln: min: 0, max: 6, opt: 'max'
+    miniTurbo: min: 0, max: 6, opt: 'max'
+    traction: min: 0, max: 6, opt: 'max'
+    weight: min: 0, max: 6, opt: 'max'
+    speed:
+        land: min: 0, max: 6, opt: 'max'
+        water: min: 0, max: 6, opt: 'max'
+        air: min: 0, max: 6, opt: 'max'
+        antigrav: min: 0, max: 6, opt: 'max'
+    handling:
+        land: min: 0, max: 6, opt: 'max'
+        water: min: 0, max: 6, opt: 'max'
+        air: min: 0, max: 6, opt: 'max'
+        antigrav: min: 0, max: 6, opt: 'max'
+
+export default optimize := (data: YamlData, options: OptimizeOptions, inwardDrift: 'both' | 'yes' | 'no') =>
+    maxValue .= -Infinity
+    let results: [Yaml.CharacterStatBlock, Yaml.KartStatBlock, Yaml.WheelStatBlock, Yaml.GliderStatBlock, Yaml.BaseStatBlock][] = []
+    for kart of data.karts
+        if (inwardDrift is 'yes' and not kart.inwardDrift) or (inwardDrift is 'no' and kart.inwardDrift)
+            continue
+        for character of data.characters
+            for wheel of data.wheels
+                for glider of data.gliders
+                    statBlock := sum<Yaml.BaseStatBlock> character, kart, wheel, glider
+                    value := optValue statBlock, options
+                    if value?
+                        if value > maxValue
+                            maxValue = value
+                            results = [[character, kart, wheel, glider, statBlock]]
+                        else if value is maxValue
+                            results.push [character, kart, wheel, glider, statBlock]   
+    return results.sort (a, b) => optValue(b.-1, maxOpts) - optValue(a.-1, maxOpts)

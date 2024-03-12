@@ -1,0 +1,1084 @@
+characters:
+  - characters:
+      - Mario
+      - Ludwig
+      - MediumMii
+    speed:
+      land: 4
+      water: 4.25
+      air: 4.5
+      antigrav: 3.75
+    accel: 3.5
+    weight: 3.5
+    handling:
+      land: 3.5
+      water: 3
+      air: 3.5
+      antigrav: 3.5
+    traction: 3.5
+    miniTurbo: 3.5
+    invuln: 3.25
+  - characters:
+      - Luigi
+      - Kamek
+      - Iggy
+    speed:
+      land: 4
+      water: 4.25
+      air: 4.5
+      antigrav: 3.75
+    accel: 3.5
+    weight: 3.5
+    handling:
+      land: 3.75
+      water: 3.25
+      air: 3.75
+      antigrav: 3.75
+    traction: 3.25
+    miniTurbo: 3.5
+    invuln: 3.25
+  - characters:
+      - Peach
+      - Daisy
+      - Birdo
+      - Yoshi
+      - Peachette
+    speed:
+      land: 3.75
+      water: 4
+      air: 4.25
+      antigrav: 3.5
+    accel: 3.75
+    weight: 3
+    handling:
+      land: 3.75
+      water: 3.25
+      air: 3.75
+      antigrav: 3.75
+    traction: 3.75
+    miniTurbo: 3.75
+    invuln: 2.75
+  - characters:
+      - Rosalina
+      - KingBoo
+      - Link
+      - Pauline
+    speed:
+      land: 4.25
+      water: 4.5
+      air: 4.75
+      antigrav: 4
+    accel: 3.25
+    weight: 3.75
+    handling:
+      land: 3.25
+      water: 2.75
+      air: 3.25
+      antigrav: 3.25
+    traction: 3.75
+    miniTurbo: 3.25
+    invuln: 3.5
+  - characters:
+      - TanookiMario
+      - InklingBoy
+      - VillagerBoy
+    speed:
+      land: 3.75
+      water: 4
+      air: 4.25
+      antigrav: 3.5
+    accel: 3.75
+    weight: 3.25
+    handling:
+      land: 3.75
+      water: 3.25
+      air: 3.75
+      antigrav: 3.75
+    traction: 3.25
+    miniTurbo: 3.75
+    invuln: 2.75
+  - characters:
+      - CatPeach
+      - InklingGirl
+      - VillagerGirl
+      - DiddyKong
+    speed:
+      land: 3.5
+      water: 3.75
+      air: 4
+      antigrav: 3.25
+    accel: 4
+    weight: 2.75
+    handling:
+      land: 4
+      water: 3.5
+      air: 4
+      antigrav: 4
+    traction: 3.75
+    miniTurbo: 3.75
+    invuln: 3.25
+  - characters:
+      - Toad
+      - ShyGuy
+      - Larry
+    speed:
+      land: 3.25
+      water: 3.5
+      air: 3.75
+      antigrav: 3
+    accel: 4
+    weight: 2.75
+    handling:
+      land: 4.25
+      water: 3.75
+      air: 4.25
+      antigrav: 4.25
+    traction: 4
+    miniTurbo: 3.75
+    invuln: 3.25
+  - characters:
+      - KoopaTroopa
+      - Lakitu
+      - BowserJr
+    speed:
+      land: 3
+      water: 3.25
+      air: 3.5
+      antigrav: 2.75
+    accel: 4
+    weight: 2.5
+    handling:
+      land: 4.5
+      water: 4
+      air: 4.5
+      antigrav: 4.5
+    traction: 4.25
+    miniTurbo: 3.75
+    invuln: 3.5
+  - characters:
+      - Toadette
+      - Wendy
+      - Isabelle
+    speed:
+      land: 3
+      water: 3.25
+      air: 3.5
+      antigrav: 2.75
+    accel: 4.25
+    weight: 2.5
+    handling:
+      land: 4.25
+      water: 3.75
+      air: 4.25
+      antigrav: 4.25
+    traction: 3.5
+    miniTurbo: 3.75
+    invuln: 3.25
+  - characters:
+      - PeteyPiranha
+    speed:
+      land: 4.25
+      water: 4.5
+      air: 4.75
+      antigrav: 4
+    accel: 3.25
+    weight: 4.5
+    handling:
+      land: 3.25
+      water: 2.75
+      air: 3.25
+      antigrav: 3.25
+    traction: 3.25
+    miniTurbo: 3
+    invuln: 4
+  - characters:
+      - BabyMario
+      - BabyLuigi
+      - DryBones
+      - LightMii
+    speed:
+      land: 2.75
+      water: 3
+      air: 3.25
+      antigrav: 2.5
+    accel: 4.25
+    weight: 2.25
+    handling:
+      land: 4.5
+      water: 4
+      air: 4.5
+      antigrav: 4.5
+    traction: 4
+    miniTurbo: 4
+    invuln: 3.75
+  - characters:
+      - BabyPeach
+      - BabyDaisy
+    speed:
+      land: 2.5
+      water: 2.75
+      air: 3
+      antigrav: 2.25
+    accel: 4
+    weight: 2
+    handling:
+      land: 5
+      water: 4.5
+      air: 5
+      antigrav: 5
+    traction: 4.25
+    miniTurbo: 4
+    invuln: 4
+  - characters:
+      - BabyRosalina
+      - Lemmy
+    speed:
+      land: 2.5
+      water: 2.75
+      air: 3
+      antigrav: 2.25
+    accel: 4.25
+    weight: 2
+    handling:
+      land: 4.75
+      water: 4.25
+      air: 4.75
+      antigrav: 4.75
+    traction: 3.75
+    miniTurbo: 4
+    invuln: 4
+  - characters:
+      - MetalMario
+      - PinkGoldPeach
+    speed:
+      land: 4.25
+      water: 4.5
+      air: 4.75
+      antigrav: 4
+    accel: 3.25
+    weight: 4.5
+    handling:
+      land: 3.25
+      water: 2.75
+      air: 3.25
+      antigrav: 3.25
+    traction: 3.25
+    miniTurbo: 3
+    invuln: 3.25
+  - characters:
+      - Wiggler
+      - Waluigi
+      - DonkeyKong
+      - Roy
+    speed:
+      land: 4.5
+      water: 4.75
+      air: 5
+      antigrav: 4.25
+    accel: 3.25
+    weight: 4
+    handling:
+      land: 3
+      water: 2.5
+      air: 3
+      antigrav: 3
+    traction: 3
+    miniTurbo: 3
+    invuln: 3.5
+  - characters:
+      - Wario
+      - DryBowser
+      - FunkyKong
+      - HeavyMii
+    speed:
+      land: 4.75
+      water: 5
+      air: 5.25
+      antigrav: 4.5
+    accel: 3
+    weight: 4.25
+    handling:
+      land: 2.75
+      water: 2.25
+      air: 2.75
+      antigrav: 2.75
+    traction: 3.25
+    miniTurbo: 2.75
+    invuln: 3.75
+  - characters:
+      - Morton
+    speed:
+      land: 4.75
+      water: 5
+      air: 5.25
+      antigrav: 4.5
+    accel: 3
+    weight: 4.5
+    handling:
+      land: 2.5
+      water: 2
+      air: 2.5
+      antigrav: 2.5
+    traction: 3
+    miniTurbo: 2.75
+    invuln: 4
+karts:
+  - karts:
+      - StandardKart
+      - '300SLRoadster'
+      - TheDuke
+    speed:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: 0
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.25
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - PipeFrame
+      - Varmint
+      - CityTripper
+    speed:
+      land: -0.25
+      water: 0
+      air: -0.5
+      antigrav: -0.5
+    accel: 0.5
+    weight: -0.25
+    handling:
+      land: 0.5
+      water: 0.5
+      air: -0.25
+      antigrav: 0.25
+    traction: 0.25
+    miniTurbo: 0.5
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - Mach8
+      - SportsCoupe
+    speed:
+      land: 0
+      water: 0
+      air: 0.25
+      antigrav: 0.5
+    accel: -0.25
+    weight: 0.25
+    handling:
+      land: -0.25
+      water: 0
+      air: -0.25
+      antigrav: 0.25
+    traction: 0.25
+    miniTurbo: 0.25
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - SteelDriver
+      - TriSpeeder
+      - BoneRattler
+    speed:
+      land: 0.25
+      water: 0.5
+      air: -0.75
+      antigrav: -0.25
+    accel: -0.75
+    weight: 0.5
+    handling:
+      land: -0.5
+      water: 0.75
+      air: -0.5
+      antigrav: -0.5
+    traction: 0
+    miniTurbo: -0.25
+    invuln: 0.75
+    inwardDrift: false
+  - karts:
+      - CatCruiser
+      - TeddyBuggy
+    speed:
+      land: -0.25
+      water: -0.25
+      air: 0.25
+      antigrav: 0
+    accel: 0.25
+    weight: 0
+    handling:
+      land: 0.25
+      water: 0
+      air: 0.25
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.5
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - CircuitSpecial
+      - BDasher
+      - PWing
+    speed:
+      land: 0.5
+      water: -0.5
+      air: -0.25
+      antigrav: 0.25
+    accel: -0.75
+    weight: 0.25
+    handling:
+      land: -0.5
+      water: -0.25
+      air: -0.75
+      antigrav: -0.25
+    traction: -0.5
+    miniTurbo: -0.25
+    invuln: 0.75
+    inwardDrift: false
+  - karts:
+      - Badwagon
+      - GLA
+    speed:
+      land: 0.5
+      water: -0.25
+      air: -0.5
+      antigrav: 0
+    accel: 0
+    weight: 0.5
+    handling:
+      land: -0.75
+      water: -0.25
+      air: -0.75
+      antigrav: -0.5
+    traction: 0.5
+    miniTurbo: -0.25
+    invuln: 1
+    inwardDrift: false
+  - karts:
+      - Prancer
+    speed:
+      land: 0.25
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: -0.5
+    handling:
+      land: 0
+      water: 0.25
+      air: 0
+      antigrav: -0.25
+    traction: -0.25
+    miniTurbo: 0
+    invuln: 0.5
+    inwardDrift: false
+  - karts:
+      - Biddybuggy
+      - MrScooty
+    speed:
+      land: -0.75
+      water: -0.5
+      air: -0.5
+      antigrav: -0.25
+    accel: 0.75
+    weight: -0.5
+    handling:
+      land: 0.5
+      water: 0.5
+      air: 0.25
+      antigrav: 0.5
+    traction: 0.25
+    miniTurbo: 0.75
+    invuln: -0.75
+    inwardDrift: false
+  - karts:
+      - Landship
+    speed:
+      land: -0.25
+      water: 0.5
+      air: -0.25
+      antigrav: -0.75
+    accel: 0.5
+    weight: -0.5
+    handling:
+      land: 0.25
+      water: 0.75
+      air: 0
+      antigrav: -0.25
+    traction: 0.75
+    miniTurbo: 0.5
+    invuln: -0.25
+    inwardDrift: false
+  - karts:
+      - Sneeker
+    speed:
+      land: 0.25
+      water: -0.25
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: -0.25
+      antigrav: 0
+    traction: -0.75
+    miniTurbo: 0
+    invuln: 0.5
+    inwardDrift: false
+  - karts:
+      - GoldStandard
+    speed:
+      land: 0.25
+      water: -0.25
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: -0.25
+      antigrav: 0
+    traction: -0.75
+    miniTurbo: 0
+    invuln: 0.25
+    inwardDrift: false
+  - karts:
+      - W25SilverArrow
+      - StandardBike
+      - FlameRider
+      - WildWiggler
+    speed:
+      land: -0.25
+      water: -0.25
+      air: 0
+      antigrav: 0.25
+    accel: 0.25
+    weight: -0.25
+    handling:
+      land: 0.25
+      water: 0.25
+      air: 0
+      antigrav: 0.25
+    traction: 0.5
+    miniTurbo: 0.25
+    invuln: 0.25
+    inwardDrift: false
+  - karts:
+      - BlueFalcon
+    speed:
+      land: 0.25
+      water: -0.25
+      air: 0
+      antigrav: 0.25
+    accel: -0.25
+    weight: -0.5
+    handling:
+      land: -0.25
+      water: 0.25
+      air: -0.5
+      antigrav: 0.5
+    traction: 0
+    miniTurbo: 0
+    invuln: 0.25
+    inwardDrift: false
+  - karts:
+      - TanookiKart
+    speed:
+      land: 0
+      water: 0.25
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: 0.25
+    handling:
+      land: 0.25
+      water: 0.5
+      air: 0
+      antigrav: 0
+    traction: 1
+    miniTurbo: 0.25
+    invuln: 0.25
+    inwardDrift: false
+  - karts:
+      - Streetle
+    speed:
+      land: -0.25
+      water: 0.5
+      air: -0.25
+      antigrav: -0.75
+    accel: 0.5
+    weight: -0.5
+    handling:
+      land: 0.25
+      water: 0.75
+      air: 0
+      antigrav: -0.25
+    traction: 0.75
+    miniTurbo: 0.5
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - KoopaClown
+      - MasterCycleZero
+    speed:
+      land: 0
+      water: 0.25
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: 0.25
+    handling:
+      land: 0.25
+      water: 0.5
+      air: 0
+      antigrav: 0
+    traction: 1
+    miniTurbo: 0.25
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - Comet
+    speed:
+      land: -0.25
+      water: -0.25
+      air: 0.25
+      antigrav: 0
+    accel: 0.25
+    weight: 0
+    handling:
+      land: 0.25
+      water: 0
+      air: 0.25
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.5
+    invuln: 0
+    inwardDrift: true
+  - karts:
+      - SportBike
+      - JetBike
+    speed:
+      land: 0.25
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: -0.25
+    handling:
+      land: 0
+      water: 0.25
+      air: 0
+      antigrav: -0.25
+    traction: -0.25
+    miniTurbo: 0
+    invuln: 0
+    inwardDrift: true
+  - karts:
+      - YoshiBike
+    speed:
+      land: -0.25
+      water: -0.25
+      air: 0.25
+      antigrav: 0
+    accel: 0.25
+    weight: 0
+    handling:
+      land: 0.25
+      water: 0
+      air: 0.25
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.5
+    invuln: 0
+    inwardDrift: true
+  - karts:
+      - MasterCycle
+    speed:
+      land: 0.25
+      water: -0.25
+      air: 0
+      antigrav: 0
+    accel: -0.5
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: -0.25
+      antigrav: 0
+    traction: -0.75
+    miniTurbo: 0
+    invuln: 0
+    inwardDrift: true
+  - karts:
+      - StandardATV
+    speed:
+      land: 0.5
+      water: -0.25
+      air: -0.5
+      antigrav: 0
+    accel: -1
+    weight: 0.5
+    handling:
+      land: -0.75
+      water: -0.25
+      air: -0.75
+      antigrav: -0.5
+    traction: 0.5
+    miniTurbo: -0.25
+    invuln: 0.75
+    inwardDrift: false
+  - karts:
+      - SplatBuggy
+    speed:
+      land: 0.25
+      water: -0.25
+      air: 0
+      antigrav: 0.25
+    accel: -0.25
+    weight: -0.5
+    handling:
+      land: -0.25
+      water: 0.25
+      air: -0.5
+      antigrav: 0.5
+    traction: 0
+    miniTurbo: 0
+    invuln: 0
+    inwardDrift: false
+  - karts:
+      - Inkstriker
+    speed:
+      land: 0
+      water: 0
+      air: 0.25
+      antigrav: 0.5
+    accel: -0.25
+    weight: 0.25
+    handling:
+      land: -0.25
+      water: 0
+      air: -0.25
+      antigrav: 0.25
+    traction: 0.25
+    miniTurbo: 0.25
+    invuln: -0.5
+    inwardDrift: false
+wheels:
+  - wheels:
+      - Standard
+      - BlueStandard
+    speed:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: 0
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.25
+    invuln: 0.25
+  - wheels:
+      - Monster
+      - HotMonster
+    speed:
+      land: 0.25
+      water: -0.25
+      air: -0.5
+      antigrav: 0
+    accel: -0.5
+    weight: 0.5
+    handling:
+      land: -0.75
+      water: -0.5
+      air: -0.5
+      antigrav: -0.75
+    traction: 0.5
+    miniTurbo: 0
+    invuln: 0.75
+  - wheels:
+      - Roller
+      - AzureRoller
+    speed:
+      land: -0.75
+      water: 0
+      air: 0
+      antigrav: -0.5
+    accel: 0.5
+    weight: -0.5
+    handling:
+      land: 0.25
+      water: 0.25
+      air: 0.25
+      antigrav: 0.25
+    traction: -0.25
+    miniTurbo: 0.75
+    invuln: -0.75
+  - wheels:
+      - Slim
+      - Wood
+      - CrimsonSlim
+    speed:
+      land: 0.25
+      water: -0.25
+      air: -0.25
+      antigrav: 0.5
+    accel: -0.5
+    weight: 0
+    handling:
+      land: 0.25
+      water: 0.25
+      air: 0.25
+      antigrav: 0
+    traction: -1
+    miniTurbo: 0
+    invuln: 0.5
+  - wheels:
+      - Slick
+      - CyberSlick
+    speed:
+      land: 0.5
+      water: -0.75
+      air: -0.75
+      antigrav: 0.50
+    accel: -0.75
+    weight: 0.25
+    handling:
+      land: -0.25
+      water: -0.75
+      air: -0.5
+      antigrav: -0.25
+    traction: -1.25
+    miniTurbo: -0.25
+    invuln: 0.5
+  - wheels:
+      - Metal
+    speed:
+      land: 0.5
+      water: 0
+      air: -0.25
+      antigrav: -0.25
+    accel: -1
+    weight: 0.5
+    handling:
+      land: -0.25
+      water: -0.25
+      air: -0.75
+      antigrav: -0.5
+    traction: -0.75
+    miniTurbo: -0.25
+    invuln: 0.75
+  - wheels:
+      - Button
+      - LeafTires
+    speed:
+      land: -0.25
+      water: -0.25
+      air: -0.25
+      antigrav: 0
+    accel: 0.25
+    weight: -0.5
+    handling:
+      land: 0
+      water: 0
+      air: -0.25
+      antigrav: 0.25
+    traction: -0.5
+    miniTurbo: 0.5
+    invuln: 0
+  - wheels:
+      - OffRoad
+      - RetroOffRoad
+      - TriforceTires
+    speed:
+      land: 0.25
+      water: 0.25
+      air: -0.5
+      antigrav: 0
+    accel: -0.25
+    weight: 0.25
+    handling:
+      land: -0.5
+      water: -0.5
+      air: -0.25
+      antigrav: -0.25
+    traction: 0.25
+    miniTurbo: 0
+    invuln: 0.75
+  - wheels:
+      - Sponge
+    speed:
+      land: -0.25
+      water: -0.5
+      air: 0.25
+      antigrav: -0.25
+    accel: 0
+    weight: -0.25
+    handling:
+      land: -0.25
+      water: -0.5
+      air: 0
+      antigrav: -0.25
+    traction: 0.25
+    miniTurbo: 0.5
+    invuln: 0.25
+  - wheels:
+      - Cushion
+    speed:
+      land: -0.25
+      water: -0.5
+      air: 0.25
+      antigrav: -0.25
+    accel: 0
+    weight: -0.25
+    handling:
+      land: -0.25
+      water: -0.5
+      air: 0
+      antigrav: -0.25
+    traction: 0.25
+    miniTurbo: 0.5
+    invuln: 0.75
+  - wheels:
+      - GoldTires
+    speed:
+      land: 0.5
+      water: 0
+      air: -0.25
+      antigrav: -0.25
+    accel: -1
+    weight: 0.5
+    handling:
+      land: -0.25
+      water: -0.25
+      air: -0.75
+      antigrav: -0.5
+    traction: -0.75
+    miniTurbo: -0.25
+    invuln: 0.5
+  - wheels:
+      - GLATires
+    speed:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: 0
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.25
+    invuln: 0.5
+  - wheels:
+      - AncientTires
+    speed:
+      land: 0.25
+      water: -0.25
+      air: -0.5
+      antigrav: 0
+    accel: -0.5
+    weight: 0.5
+    handling:
+      land: -0.75
+      water: -0.5
+      air: -0.5
+      antigrav: -0.75
+    traction: 0.5
+    miniTurbo: 0
+    invuln: 0.5
+gliders:
+  - gliders:
+      - SuperGlider
+      - WaddleWing
+      - HylianKite
+    speed:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: 0
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0
+    invuln: 0
+  - gliders:
+      - CloudGlider
+      - Parachute
+      - FlowerGlider
+      - PaperGlider
+    speed:
+      land: -0.25
+      water: 0
+      air: -0.25
+      antigrav: 0.25
+    accel: 0.25
+    weight: -0.25
+    handling:
+      land: 0
+      water: 0
+      air: 0.25
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.25
+    invuln: -0.25
+  - gliders:
+      - WarioWing
+      - PlaneGlider
+      - GoldGlider
+      - Paraglider
+    speed:
+      land: 0
+      water: -0.25
+      air: 0
+      antigrav: 0.25
+    accel: 0
+    weight: 0.25
+    handling:
+      land: 0
+      water: 0.25
+      air: 0
+      antigrav: -0.25
+    traction: -0.25
+    miniTurbo: 0
+    invuln: 0
+  - gliders:
+      - Parafoil
+      - BowserKite
+      - MKTVParafoil
+    speed:
+      land: -0.25
+      water: -0.25
+      air: -0.25
+      antigrav: 0.25
+    accel: 0.25
+    weight: 0
+    handling:
+      land: 0
+      water: 0.25
+      air: 0.25
+      antigrav: -0.25
+    traction: -0.25
+    miniTurbo: 0.25
+    invuln: -0.25

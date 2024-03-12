@@ -1,0 +1,15 @@
+{
+    "name": "mariokart-optimizer",
+    "private": true,
+    "dependencies": {
+        "@danielx/civet": "~0.6.83",
+        "js-yaml": "^4.1.0"
+    },
+    "scripts": {
+        "build": "./build.sh",
+        "start": "node -e \"(e => e().use(e.static('dist')).listen(3000))(require('express'))\""
+    },
+    "devDependencies": {
+        "express": "^4.18.3"
+    }
+}

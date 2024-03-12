@@ -1,0 +1,33 @@
+export interface TerrainDependentStat
+    land: number
+    air: number
+    water: number
+    antigrav: number
+
+export interface BaseStatBlock
+    speed: TerrainDependentStat
+    accel: number
+    weight: number
+    handling: TerrainDependentStat
+    traction: number
+    miniTurbo: number
+    invuln: number
+
+export interface CharacterStatBlock < BaseStatBlock
+    characters: string[]
+
+export interface KartStatBlock < BaseStatBlock
+    karts: string[]
+    inwardDrift: boolean
+
+export interface WheelStatBlock < BaseStatBlock
+    wheels: string[]
+
+export interface GliderStatBlock < BaseStatBlock
+    gliders: string[]
+
+export interface YamlData
+    characters: CharacterStatBlock[]
+    karts: KartStatBlock[]
+    wheels: WheelStatBlock[]
+    gliders: GliderStatBlock[]
