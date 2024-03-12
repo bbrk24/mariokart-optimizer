@@ -5,7 +5,7 @@ data from ./data.civet
 document.querySelector 'form'
     .addEventListener 'submit', (e) ->
         e.preventDefault()
-        document.getElementById('output').innerHTML = optimize(
+        results := optimize
             data
             {
                 accel:
@@ -64,8 +64,15 @@ document.querySelector 'form'
                     opt: document.getElementById('weight-opt').value
             }
             document.getElementById('inward-drift').value
-        ).map (el) => [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders].join '; '
-        .join '<br>'
+        document.getElementById('output').innerHTML = results
+            .map (el) => [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders].join '; '
+            .join '<br>'
+        if results.# > 0
+            setPreviewedKart
+                data.characters.indexOf results.0.0
+                data.karts.indexOf results.0.1
+                data.wheels.indexOf results.0.2
+                data.gliders.indexOf results.0.3
 
 kartPreview := document.getElementById 'kart-preview'
 kartPreview.innerHTML = ''
@@ -151,3 +158,9 @@ updatePreview := :void =>
 updatePreview()
 
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
+
+function setPreviewedKart(character: number, kart: number, wheels: number, glider: number): void
+    characterDropdown.value = character
+    kartDropdown.value = kart
+    wheelDropdown.value = wheels
+    gliderDropdown.value = glider
