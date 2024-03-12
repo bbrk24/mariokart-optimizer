@@ -1064,6 +1064,7 @@ gliders:
     miniTurbo: 0
     invuln: 0
   - gliders:
+      - PeachParasol
       - Parafoil
       - BowserKite
       - MKTVParafoil
