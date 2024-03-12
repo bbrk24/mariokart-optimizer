@@ -1,8 +1,8 @@
 // @ts-nocheck
 data from ./data.civet
-optimize from ./optimize.civet
+{ optimize, sum } from ./optimize.civet
 
-document.querySelector('form')
+document.querySelector 'form'
     .addEventListener 'submit', (e) ->
         e.preventDefault()
         document.getElementById('output').innerHTML = optimize(
@@ -66,3 +66,88 @@ document.querySelector('form')
             document.getElementById('inward-drift').value
         ).map (el) => [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders].join '; '
         .join '<br>'
+
+kartPreview := document.getElementById 'kart-preview'
+kartPreview.innerHTML = ''
+
+characterLabel := document.createElement 'label'
+characterLabel.innerHTML = 'Character'
+characterDropdown := document.createElement 'select'
+characterLabel.htmlFor = characterDropdown.id = 'character-select'
+for each statBlock, i of data.characters
+    for name of statBlock.characters
+        document.createElement 'option'
+            ||> .value = i
+            ||> .innerHTML = name
+            |> characterDropdown.appendChild
+kartPreview.appendChild characterLabel
+kartPreview.append ' '
+kartPreview.appendChild characterDropdown
+kartPreview.appendChild document.createElement 'br'
+
+kartLabel := document.createElement 'label'
+kartLabel.innerHTML = 'Kart'
+kartDropdown := document.createElement 'select'
+kartLabel.htmlFor = kartDropdown.id = 'kart-select'
+for each statBlock, i of data.karts
+    for name of statBlock.karts
+        document.createElement 'option'
+            ||> .value = i
+            ||> .innerHTML = name
+            |> kartDropdown.appendChild
+kartPreview.appendChild kartLabel
+kartPreview.append ' '
+kartPreview.appendChild kartDropdown
+kartPreview.appendChild document.createElement 'br'
+
+wheelLabel := document.createElement 'label'
+wheelLabel.innerHTML = 'Wheels'
+wheelDropdown := document.createElement 'select'
+wheelLabel.htmlFor = wheelDropdown.id = 'wheel-select'
+for each statBlock, i of data.wheels
+    for name of statBlock.wheels
+        document.createElement 'option'
+            ||> .value = i
+            ||> .innerHTML = name
+            |> wheelDropdown.appendChild
+kartPreview.appendChild wheelLabel
+kartPreview.append ' '
+kartPreview.appendChild wheelDropdown
+kartPreview.appendChild document.createElement 'br'
+
+gliderLabel := document.createElement 'label'
+gliderLabel.innerHTML = 'Glider'
+gliderDropdown := document.createElement 'select'
+gliderLabel.htmlFor = gliderDropdown.id = 'glider-select'
+for each statBlock, i of data.gliders
+    for name of statBlock.gliders
+        document.createElement 'option'
+            ||> .value = i
+            ||> .innerHTML = name
+            |> gliderDropdown.appendChild
+kartPreview.appendChild gliderLabel
+kartPreview.append ' '
+kartPreview.appendChild gliderDropdown
+kartPreview.appendChild document.createElement 'br'
+
+statsDisplay := document.createElement 'div'
+    ||> kartPreview.appendChild
+
+updatePreview := :void =>
+    character := data.characters[characterDropdown.value]
+    kart := data.karts[kartDropdown.value]
+    wheel := data.wheels[wheelDropdown.value]
+    glider := data.gliders[gliderDropdown.value]
+    statBlock := sum character, kart, wheel, glider
+    statsDisplay.innerText = ```
+        Speed: ${statBlock.speed.land} (land), ${statBlock.speed.water} (water), ${statBlock.speed.air} (air), ${statBlock.speed.antigrav} (antigravity)
+        Acceleration: ${statBlock.accel}
+        Weight: ${statBlock.weight}
+        Handling: ${statBlock.handling.land} (land), ${statBlock.handling.water} (water), ${statBlock.handling.air} (air), ${statBlock.handling.antigrav} (antigravity)
+        Traction: ${statBlock.traction}
+        Mini-Turbo: ${statBlock.miniTurbo}
+        Invulnerability: ${statBlock.invuln}
+        ```
+updatePreview()
+
+[characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
