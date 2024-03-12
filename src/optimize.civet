@@ -78,4 +78,4 @@ export optimize := (data: YamlData, options: OptimizeOptions, inwardDrift: 'both
                             results = [[character, kart, wheel, glider, statBlock]]
                         else if value is maxValue
                             results.push [character, kart, wheel, glider, statBlock]   
-    return results.sort (a, b) => optValue(b.4, maxOpts) - optValue(a.4, maxOpts)
+    return results.sort (a, b) => optValue(b.4, maxOpts)! - optValue(a.4, maxOpts)!
