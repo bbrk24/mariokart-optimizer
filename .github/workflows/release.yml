@@ -15,7 +15,7 @@ jobs:
       - name: Run build script
         shell: bash
         run: |
-          npm ci --no-fund
+          npm ci --omit dev --no-fund
           npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
