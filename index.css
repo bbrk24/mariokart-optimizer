@@ -2,6 +2,10 @@ img {
   width: min(2.5em, calc((100vw - 6.5em) / 8));
 }
 
+button, select, input {
+  font-size: 0.8333rem;
+}
+
 :root {
   --meter-length: 0;
 }
@@ -31,17 +35,17 @@ img {
   height: 100%;
   background: linear-gradient(
     to right,
-    transparent calc(16.66667% - 0.5px),
-    rgb(127 127 145 / 51.6%) calc(16.66667% - 0.5px) calc(16.66667% + 0.5px),
-    transparent calc(16.66667% + 0.5px) calc(33.33333% - 0.5px),
-    rgb(127 127 145 / 51.6%) calc(33.33333% - 0.5px) calc(33.33333% + 0.5px),
-    transparent calc(33.33333% + 0.5px) calc(50% - 0.5px),
-    rgb(127 127 145 / 51.6%) calc(50% - 0.5px) calc(50% + 0.5px),
-    transparent calc(50% + 0.5px) calc(66.66667% - 0.5px),
-    rgb(127 127 145 / 51.6%) calc(66.66667% - 0.5px) calc(66.66667% + 0.5px),
-    transparent calc(66.66667% + 0.5px) calc(83.33333% - 0.5px),
-    rgb(127 127 145 / 51.6%) calc(83.33333% - 0.5px) calc(83.33333% + 0.5px),
-    transparent calc(83.33333% + 0.5px)
+    transparent calc(16.6666667% - 0.03125em),
+    rgb(127 127 145 / 51.6%) calc(16.6666667% - 0.03125em) calc(16.6666667% + 0.03125em),
+    transparent calc(16.6666667% + 0.03125em) calc(33.3333333% - 0.03125em),
+    rgb(127 127 145 / 51.6%) calc(33.3333333% - 0.03125em) calc(33.3333333% + 0.03125em),
+    transparent calc(33.3333333% + 0.03125em) calc(50% - 0.03125em),
+    rgb(127 127 145 / 51.6%) calc(50% - 0.03125em) calc(50% + 0.03125em),
+    transparent calc(50% + 0.03125em) calc(66.6666667% - 0.03125em),
+    rgb(127 127 145 / 51.6%) calc(66.6666667% - 0.03125em) calc(66.6666667% + 0.03125em),
+    transparent calc(66.6666667% + 0.03125em) calc(83.3333333% - 0.03125em),
+    rgb(127 127 145 / 51.6%) calc(83.3333333% - 0.03125em) calc(83.3333333% + 0.03125em),
+    transparent calc(83.3333333% + 0.03125em)
   );
 }
 
