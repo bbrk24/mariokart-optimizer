@@ -813,7 +813,7 @@ wheels:
       - Roller
       - AzureRoller
     speed:
-      land: -0.75
+      land: -0.5
       water: 0
       air: 0
       antigrav: -0.5
