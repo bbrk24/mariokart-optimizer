@@ -4,5 +4,5 @@ set -e
 shopt -s globstar
 civet --js -c src/**/*.civet -o dist/src/.js
 js-yaml data.yml >dist/data.json
-cp index.html dist/
+cp index.html index.css dist/
 cp -r img/ dist/

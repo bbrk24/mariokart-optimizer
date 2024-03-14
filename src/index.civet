@@ -155,6 +155,13 @@ kartPreview.appendChild document.createElement 'br'
 statsDisplay := document.createElement 'div'
     ||> kartPreview.appendChild
 
+makeMeter := (id: string, value: number) =>
+    document.createElement 'div'
+        ||> .className = 'meter'
+        ||> .id = id
+        ||> .style = `--meter-length: ${value * 100/6}%;`
+        |> .outerHTML
+
 updatePreview := :void =>
     character := data.characters[characterDropdown.value]
     characterImg.src = `./img/${Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
@@ -167,19 +174,19 @@ updatePreview := :void =>
     statBlock := sum character, kart, wheel, glider
     statsDisplay.innerHTML = ```
         <table><tbody>
-        <tr><td><label for="land-speed-prev">Land speed</label></td><td><meter id="land-speed-prev" max="6" value="${statBlock.speed.land}">${statBlock.speed.land}</meter></td><td>${statBlock.speed.land}</td></tr>
-        <tr><td><label for="water-speed-prev">Water speed</label></td><td><meter id="water-speed-prev" max="6" value="${statBlock.speed.water}">${statBlock.speed.water}</meter></td><td>${statBlock.speed.water}</td></tr>
-        <tr><td><label for="air-speed-prev">Air speed</label></td><td><meter id="air-speed-prev" max="6" value="${statBlock.speed.air}">${statBlock.speed.air}</meter></td><td>${statBlock.speed.air}</td></tr>
-        <tr><td><label for="antigrav-speed-prev">Antigravity speed</label></td><td><meter id="antigrav-speed-prev" max="6" value="${statBlock.speed.antigrav}">${statBlock.speed.antigrav}</meter></td><td>${statBlock.speed.antigrav}</td></tr>
-        <tr><td><label for="accel-prev">Acceleration</label></td><td><meter id="accel-prev" max="6" value="${statBlock.accel}">${statBlock.accel}</meter></td><td>${statBlock.accel}</td></tr>
-        <tr><td><label for="weight-prev">Weight</label></td><td><meter id="weight-prev" max="6" value="${statBlock.weight}">${statBlock.weight}</meter></td><td>${statBlock.weight}</td></tr>
-        <tr><td><label for="land-handling-prev">Land handling</label></td><td><meter id="land-handling-prev" max="6" value="${statBlock.handling.land}">${statBlock.handling.land}</meter></td><td>${statBlock.handling.land}</td></tr>
-        <tr><td><label for="water-handling-prev">Water handling</label></td><td><meter id="water-handling-prev" max="6" value="${statBlock.handling.water}">${statBlock.handling.water}</meter></td><td>${statBlock.handling.water}</td></tr>
-        <tr><td><label for="air-handling-prev">Air handling</label></td><td><meter id="air-handling-prev" max="6" value="${statBlock.handling.air}">${statBlock.handling.air}</meter></td><td>${statBlock.handling.air}</td></tr>
-        <tr><td><label for="antigrav-handling-prev">Antigravity handling</label></td><td><meter id="antigrav-handling-prev" max="6" value="${statBlock.handling.antigrav}">${statBlock.handling.antigrav}</meter></td><td>${statBlock.handling.antigrav}</td></tr>
-        <tr><td><label for="traction-prev">Traction</label></td><td><meter id="traction-prev" max="6" value="${statBlock.traction}">${statBlock.traction}</meter></td><td>${statBlock.traction}</td></tr>
-        <tr><td><label for="mini-turbo-prev">Mini-Turbo</label></td><td><meter id="mini-turbo-prev" max="6" value="${statBlock.miniTurbo}">${statBlock.miniTurbo}</meter></td><td>${statBlock.miniTurbo}</td></tr>
-        <tr><td><label for="invuln-prev">Invulnerability</label></td><td><meter id="invuln-prev" max="6" value="${statBlock.invuln}">${statBlock.invuln}</meter></td><td>${statBlock.invuln}</td></tr>
+        <tr><td><label for="land-speed-prev">Land speed</label></td><td>${makeMeter 'land-speed-prev', statBlock.speed.land}</td><td>${statBlock.speed.land}</td></tr>
+        <tr><td><label for="water-speed-prev">Water speed</label></td><td>${makeMeter 'water-speed-prev', statBlock.speed.water}</td><td>${statBlock.speed.water}</td></tr>
+        <tr><td><label for="air-speed-prev">Air speed</label></td><td>${makeMeter 'air-speed-prev', statBlock.speed.air}</td><td>${statBlock.speed.air}</td></tr>
+        <tr><td><label for="antigrav-speed-prev">Antigravity speed</label></td><td>${makeMeter 'antigrav-speed-prev', statBlock.speed.antigrav}</td><td>${statBlock.speed.antigrav}</td></tr>
+        <tr><td><label for="accel-prev">Acceleration</label></td><td>${makeMeter 'accel-prev', statBlock.accel}</td><td>${statBlock.accel}</td></tr>
+        <tr><td><label for="weight-prev">Weight</label></td><td>${makeMeter 'weight-prev', statBlock.weight}</td><td>${statBlock.weight}</td></tr>
+        <tr><td><label for="land-handling-prev">Land handling</label></td><td>${makeMeter 'land-handling-prev', statBlock.handling.land}</td><td>${statBlock.handling.land}</td></tr>
+        <tr><td><label for="water-handling-prev">Water handling</label></td><td>${makeMeter 'water-handling-prev', statBlock.handling.water}</td><td>${statBlock.handling.water}</td></tr>
+        <tr><td><label for="air-handling-prev">Air handling</label></td><td>${makeMeter 'air-handling-prev', statBlock.handling.air}</td><td>${statBlock.handling.air}</td></tr>
+        <tr><td><label for="antigrav-handling-prev">Antigravity handling</label></td><td>${makeMeter 'antigrav-handling-prev', statBlock.handling.antigrav}</td><td>${statBlock.handling.antigrav}</td></tr>
+        <tr><td><label for="traction-prev">Traction</label></td><td>${makeMeter 'traction-prev', statBlock.traction}</td><td>${statBlock.traction}</td></tr>
+        <tr><td><label for="mini-turbo-prev">Mini-Turbo</label></td><td>${makeMeter 'mini-turbo-prev', statBlock.miniTurbo}</td><td>${statBlock.miniTurbo}</td></tr>
+        <tr><td><label for="invuln-prev">Invulnerability</label></td><td>${makeMeter 'invuln-prev', statBlock.invuln}</td><td>${statBlock.invuln}</td></tr>
         </tbody></table>
         ```
 updatePreview()
