@@ -4,11 +4,18 @@
 data from ./data.civet
 { optimize, sum } from ./optimize.civet
 
+limitedData .= structuredClone data
+
 document.querySelector 'form'
     .addEventListener 'submit', (e) ->
         e.preventDefault()
         results := optimize
-            data
+            {
+                characters: limitedData.characters.filter .characters.#
+                karts: limitedData.karts.filter .karts.#
+                wheels: limitedData.wheels.filter .wheels.#
+                gliders: limitedData.gliders.filter .gliders.#
+            }
             {
                 accel:
                     min: document.getElementById('accel-min').value |> Number
@@ -76,10 +83,10 @@ document.querySelector 'form'
             .join ''
         if results.# > 0
             setPreviewedKart
-                data.characters.indexOf results.0.0
-                data.karts.indexOf results.0.1
-                data.wheels.indexOf results.0.2
-                data.gliders.indexOf results.0.3
+                results.0.0.characters.0
+                results.0.1.karts.0
+                results.0.2.wheels.0
+                results.0.3.gliders.0
 
 kartPreview := document.getElementById 'kart-preview'
 kartPreview.innerHTML = ''
@@ -193,9 +200,53 @@ updatePreview()
 
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
-function setPreviewedKart(character: number, kart: number, wheels: number, glider: number)
-    characterDropdown.value = character
-    kartDropdown.value = kart
-    wheelDropdown.value = wheels
-    gliderDropdown.value = glider
+function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
+    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, &.textContent.replace(' ', '') is character
+    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, &.textContent.replace(' ', '') is kart
+    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, &.textContent.replace(' ', '') is wheels
+    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.textContent.replace(' ', '') is glider
     updatePreview()
+
+menu := document.querySelector 'menu'
+let currMenu?: string
+
+installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
+    document.getElementById `limit-${name}`
+        .addEventListener 'click', ->
+            menu.innerHTML = ''
+            if currMenu is name
+                currMenu = undefined
+            else
+                currMenu = name
+                totalNames := data[name].flatMap &[name]
+                indices := data[name].flatMap (el, i) => Array(el[name].#).fill i
+                includedNames := limitedData[name].flatMap &[name]
+                for each currName, i of totalNames
+                    li := document.createElement 'li'
+                    checkBox := document.createElement 'input'
+                        ||> .type = 'checkbox'
+                    checkBox.checked = (currName is in includedNames)
+                    index := indices[i]
+                    checkBox.addEventListener 'change', ->
+                        if @checked
+                            limitedData[name][index][name].push currName
+                        else
+                            idx := limitedData[name][index][name].indexOf currName
+                            if idx >= 0
+                                limitedData[name][index][name].splice idx, 1
+
+                    label := document.createElement 'label'
+                    label.htmlFor = checkBox.id = `checkbox-${currName}`
+                    label.textContent = currName.replace rgx, ' $&'
+
+                    li.appendChild checkBox
+                    li.appendChild label
+                    menu.appendChild li
+
+['characters', 'karts', 'wheels', 'gliders'].forEach installLimitListener
+
+document.querySelector 'button[type="reset"]'
+    .addEventListener 'click', ->
+        limitedData = structuredClone data
+        menu.innerHTML = ''
+        currMenu = undefined

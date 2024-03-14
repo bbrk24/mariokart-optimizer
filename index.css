@@ -2,8 +2,28 @@ img {
   width: min(2.5em, calc((100vw - 6.5em) / 8));
 }
 
-button, select, input {
+button[type="button"] {
+  margin-top: 0.25em;
+}
+
+button, select, input[type="number"] {
   font-size: 0.8333rem;
+}
+
+menu {
+  columns: 2;
+}
+
+@media screen and (min-width: 36em) {
+  menu {
+    columns: 3;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  menu {
+    columns: 4;
+  }
 }
 
 :root {
@@ -51,6 +71,10 @@ button, select, input {
 
 select[id$="-select"] {
   margin-bottom: 1.5em;
+}
+
+menu:empty {
+  margin: 0.25em 0;
 }
 
 #output td {
