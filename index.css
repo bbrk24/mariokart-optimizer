@@ -7,12 +7,13 @@ img {
 }
 
 .meter {
-  height: 1em;
+  height: 0.75em;
   border-radius: 0.5em;
   border: 1px solid rgb(127 127 145 / 51.6%);
   width: min(18em, calc(100vw - 8.9375em));
   position: relative;
   background-color: rgb(127 127 127 / 16.4%);
+  overflow: hidden;
 }
 
 .meter::before {
@@ -21,7 +22,6 @@ img {
   height: 100%;
   width: var(--meter-length);
   background-color: #00a960;
-  border-radius: 0.5em 0 0 0.5em;
 }
 
 .meter::after {
@@ -32,15 +32,15 @@ img {
   background: linear-gradient(
     to right,
     transparent calc(16.66667% - 0.5px),
-    gray calc(16.66667% - 0.5px) calc(16.66667% + 0.5px),
+    rgb(127 127 145 / 51.6%) calc(16.66667% - 0.5px) calc(16.66667% + 0.5px),
     transparent calc(16.66667% + 0.5px) calc(33.33333% - 0.5px),
-    gray calc(33.33333% - 0.5px) calc(33.33333% + 0.5px),
+    rgb(127 127 145 / 51.6%) calc(33.33333% - 0.5px) calc(33.33333% + 0.5px),
     transparent calc(33.33333% + 0.5px) calc(50% - 0.5px),
-    gray calc(50% - 0.5px) calc(50% + 0.5px),
+    rgb(127 127 145 / 51.6%) calc(50% - 0.5px) calc(50% + 0.5px),
     transparent calc(50% + 0.5px) calc(66.66667% - 0.5px),
-    gray calc(66.66667% - 0.5px) calc(66.66667% + 0.5px),
+    rgb(127 127 145 / 51.6%) calc(66.66667% - 0.5px) calc(66.66667% + 0.5px),
     transparent calc(66.66667% + 0.5px) calc(83.33333% - 0.5px),
-    gray calc(83.33333% - 0.5px) calc(83.33333% + 0.5px),
+    rgb(127 127 145 / 51.6%) calc(83.33333% - 0.5px) calc(83.33333% + 0.5px),
     transparent calc(83.33333% + 0.5px)
   );
 }
