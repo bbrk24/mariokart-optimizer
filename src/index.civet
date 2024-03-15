@@ -177,7 +177,7 @@ rivalsDiv := document.createElement 'div'
 rivalInfoString := 'When playing as P1 in a Grand Prix, these characters are guaranteed to be COM characters and should be better than other COMs, unless they are chosen by other players. Not all characters have rivals.'
 
 document.createElement 'sup'
-    ||> .textContent = '\ufe0f\u2139'
+    ||> .textContent = '\ufe0e\u2139'
     ||> .className = 'info'
     ||> .title = rivalInfoString
     ||> .addEventListener
