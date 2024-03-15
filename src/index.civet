@@ -201,10 +201,10 @@ updatePreview()
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
 function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
-    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, &.textContent.replace(' ', '') is character
-    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, &.textContent.replace(' ', '') is kart
-    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, &.textContent.replace(' ', '') is wheels
-    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.textContent.replace(' ', '') is glider
+    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, &.textContent.replaceAll(' ', '') is character
+    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, &.textContent.replaceAll(' ', '') is kart
+    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, &.textContent.replaceAll(' ', '') is wheels
+    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.textContent.replaceAll(' ', '') is glider
     updatePreview()
 
 menu := document.querySelector 'menu'
