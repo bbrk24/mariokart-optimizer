@@ -715,7 +715,7 @@ karts:
       antigrav: 0
     traction: 0
     miniTurbo: 0.5
-    invuln: 0
+    invuln: -0.25
     inwardDrift: true
   - karts:
       - MasterCycle
