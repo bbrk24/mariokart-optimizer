@@ -345,8 +345,6 @@ karts:
     inwardDrift: false
   - karts:
       - PipeFrame
-      - Varmint
-      - CityTripper
     speed:
       land: -0.25
       water: 0
@@ -682,6 +680,25 @@ karts:
     miniTurbo: 0
     invuln: 0
     inwardDrift: true
+  - karts:
+      - Varmint
+      - CityTripper
+    speed:
+      land: -0.25
+      water: 0
+      air: -0.5
+      antigrav: -0.5
+    accel: 0.5
+    weight: -0.25
+    handling:
+      land: 0.5
+      water: 0.5
+      air: -0.25
+      antigrav: 0.25
+    traction: 0.25
+    miniTurbo: 0.5
+    invuln: -0.25
+    inwardDrift: false
   - karts:
       - YoshiBike
     speed:
