@@ -1083,3 +1083,123 @@ gliders:
     traction: -0.25
     miniTurbo: 0.25
     invuln: -0.25
+rivals:
+  Mario:
+    - Peach
+    - Bowser
+  Luigi:
+    - Mario
+    - Daisy
+  Peach:
+    - Toad
+    - DonkeyKong
+  Daisy:
+    - Peach
+    - Waluigi
+  Yoshi:
+    - Toad
+    - DonkeyKong
+  Toad:
+    - KoopaTroopa
+    - Waluigi
+  KoopaTroopa:
+    - Yoshi
+    - Toad
+  ShyGuy:
+    - Yoshi
+  BabyMario:
+    - BowserJr
+    - BabyPeach
+  BabyLuigi:
+    - BabyMario
+    - BabyDaisy
+  BabyPeach:
+    - BabyMario
+    - BabyDaisy
+  BabyDaisy:
+    - BabyPeach
+    - BabyLuigi
+  Wario:
+    - Mario
+    - Daisy
+  Waluigi:
+    - Luigi
+    - Toadette
+  DonkeyKong:
+    - Bowser
+    - Wario
+  Bowser:
+    - Mario
+    - Luigi
+  Lemmy:
+    - Larry
+  Larry:
+    - Lemmy
+  Wendy:
+    - Peach
+    - Daisy
+  Ludwig:
+    - Iggy
+  InklingGirl:
+    - InklingBoy
+  VillagerBoy:
+    - Isabelle
+  Isabelle:
+    - VillagerGirl
+  Link: []
+  Rosalina:
+    - Toad
+  TanookiMario:
+    - CatPeach
+  CatPeach:
+    - TanookiMario
+  Birdo:
+    - Yoshi
+  Lakitu: []
+  Toadette:
+    - Yoshi
+    - Wario
+  KingBoo:
+    - PeteyPiranha
+  PeteyPiranha:
+    - KingBoo
+  BabyRosalina:
+    - Toadette
+  MetalMario:
+    - PinkGoldPeach
+  PinkGoldPeach:
+    - MetalMario
+  Wiggler:
+    - Yoshi
+    - ShyGuy
+  DryBones:
+    - KoopaTroopa
+    - DryBowser
+  BowserJr:
+    - Peach
+  DryBowser:
+    - DryBones
+  Kamek:
+    - BowserJr
+  Iggy:
+    - Ludwig
+  Roy:
+    - Morton
+  Morton:
+    - Roy
+  Peachette:
+    - Yoshi
+    - Wario
+  DiddyKong:
+    - DonkeyKong
+  FunkyKong:
+    - DonkeyKong
+  Pauline:
+    - DonkeyKong
+  LightMii: []
+  MediumMii: []
+  HeavyMii: []
+  InklingBoy:
+    - InklingGirl
+  VillagerGirl:
+    - VillagerBoy

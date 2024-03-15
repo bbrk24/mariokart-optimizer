@@ -160,6 +160,7 @@ kartPreview.appendChild document.createElement 'br'
 kartPreview.appendChild document.createElement 'br'
 
 statsDisplay := document.createElement 'div'
+    ||> .id = 'stats-display'
     ||> kartPreview.appendChild
 
 makeMeter := (id: string, value: number) =>
@@ -169,9 +170,30 @@ makeMeter := (id: string, value: number) =>
         ||> .style = `--meter-length: ${value * 100/6}%;`
         |> .outerHTML
 
+rivalsDiv := document.createElement 'div'
+    ||> .id = 'rivals'
+    ||> .append 'Rivals'
+
+rivalInfoString := 'When playing as P1 in a Grand Prix, these characters are guaranteed to be COM characters and should be better than other COMs, unless they are chosen by other players. Not all characters have rivals.'
+
+document.createElement 'sup'
+    ||> .textContent = '\ufe0f\u2139'
+    ||> .className = 'info'
+    ||> .title = rivalInfoString
+    ||> .addEventListener
+        'click'
+        -> alert rivalInfoString
+        { +passive }
+    ||> rivalsDiv.appendChild
+rivalsDiv.append ': '
+
+rivalImgContainer := document.createElement 'span'
+    ||> rivalsDiv.appendChild
+
 updatePreview := :void =>
     character := data.characters[characterDropdown.value]
-    characterImg.src = `./img/${Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+    characterName := Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''
+    characterImg.src = `./img/${characterName}.png`
     kart := data.karts[kartDropdown.value]
     kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
     wheel := data.wheels[wheelDropdown.value]
@@ -196,6 +218,14 @@ updatePreview := :void =>
         <tr><td><label for="invuln-prev">Invulnerability</label></td><td>${makeMeter 'invuln-prev', statBlock.invuln}</td><td>${statBlock.invuln}</td></tr>
         </tbody></table>
         ```
+    statsDisplay.appendChild rivalsDiv
+    rivalImgContainer.innerHTML = ''
+    for rival of data.rivals[characterName]
+        document.createElement 'img'
+            ||> .alt = rival.replace rgx, ' $&'
+            ||> .src = `./img/${rival}.png`
+            ||> rivalImgContainer.appendChild
+
 updatePreview()
 
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }

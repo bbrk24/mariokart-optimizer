@@ -26,6 +26,10 @@ menu {
   }
 }
 
+.info {
+  text-decoration: dotted underline;
+}
+
 :root {
   --meter-length: 0;
 }
@@ -75,6 +79,23 @@ select[id$="-select"] {
 
 menu:empty {
   margin: 0.25em 0;
+}
+
+#rivals {
+  margin-top: 0.5em;
+  min-height: 2.5em;
+}
+
+@media (min-width: 39em) {
+  #stats-display {
+    display: grid;
+    width: fit-content;
+    grid-template-columns: auto auto;
+  }
+
+  #rivals {
+    margin-left: 1em;
+  }
 }
 
 #output td {
