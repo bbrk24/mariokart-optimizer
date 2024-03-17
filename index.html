@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>Mario Kart Optimizer</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description" content="A simple online tool to optimize your Mario Kart build" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./index.css" />
     <script type="module" src="src/index.js"></script>
-    <link rel="stylesheet" href="./index.css"/>
   </head>
   <body>
     <noscript>You must enable JavaScript to use this app.</noscript>
@@ -24,10 +26,10 @@
           <tr>
             <td>Land Speed</td>
             <td>
-              <input id="land-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="land-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="land-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="land-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="land-speed-opt">
@@ -40,10 +42,10 @@
           <tr>
             <td>Water Speed</td>
             <td>
-              <input id="water-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="water-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="water-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="water-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="water-speed-opt">
@@ -56,10 +58,10 @@
           <tr>
             <td>Air Speed</td>
             <td>
-              <input id="air-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="air-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="air-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="air-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="air-speed-opt">
@@ -72,10 +74,10 @@
           <tr>
             <td>Antigravity Speed</td>
             <td>
-              <input id="antigrav-speed-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="antigrav-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="antigrav-speed-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="antigrav-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="antigrav-speed-opt">
@@ -88,10 +90,10 @@
           <tr>
             <td>Acceleration</td>
             <td>
-              <input id="accel-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="accel-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="accel-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="accel-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="accel-opt">
@@ -104,10 +106,10 @@
           <tr>
             <td>Weight</td>
             <td>
-              <input id="weight-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="weight-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="weight-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="weight-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="weight-opt">
@@ -120,10 +122,10 @@
           <tr>
             <td>Land Handling</td>
             <td>
-              <input id="land-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="land-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="land-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="land-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="land-handling-opt">
@@ -136,10 +138,10 @@
           <tr>
             <td>Water Handling</td>
             <td>
-              <input id="water-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="water-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="water-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="water-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="water-handling-opt">
@@ -152,10 +154,10 @@
           <tr>
             <td>Air Handling</td>
             <td>
-              <input id="air-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="air-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="air-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="air-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="air-handling-opt">
@@ -168,10 +170,10 @@
           <tr>
             <td>Antigravity Handling</td>
             <td>
-              <input id="antigrav-handling-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="antigrav-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="antigrav-handling-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="antigrav-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="antigrav-handling-opt">
@@ -184,10 +186,10 @@
           <tr>
             <td>Traction</td>
             <td>
-              <input id="traction-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="traction-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="traction-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="traction-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="traction-opt">
@@ -200,10 +202,10 @@
           <tr>
             <td>Mini-Turbo</td>
             <td>
-              <input id="mini-turbo-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="mini-turbo-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="mini-turbo-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="mini-turbo-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="mini-turbo-opt">
@@ -216,10 +218,10 @@
           <tr>
             <td>Invulnerability</td>
             <td>
-              <input id="invuln-min" type="number" min="0" max="6" step="0.25" value="0"/>
+              <input id="invuln-min" type="number" min="0" max="5.75" step="0.25" value="0" />
             </td>
             <td>
-              <input id="invuln-max" type="number" min="0" max="6" step="0.25" value="6"/>
+              <input id="invuln-max" type="number" min="0.25" max="6" step="0.25" value="6" />
             </td>
             <td>
               <select id="invuln-opt">
@@ -247,6 +249,7 @@
       <button type="button" id="limit-gliders">Limit gliders</button>
       <menu></menu>
       <button type="submit" id="submit">Go!</button>
+      <button type="button" onclick="document.getElementById('output').innerHTML = ''">Clear results</button>
     </form>
     <table>
       <thead>
@@ -260,23 +263,23 @@
       <tbody id="output">
         <tr>
           <td>
-            <img src="./img/Mario.png" alt="Mario"/>
-            <img src="./img/Ludwig.png" alt="Ludwig"/>
-            <img src="./img/MediumMii.png" alt="MediumMii"/>
+            <img src="./img/Mario.png" alt="Mario" title="Mario" />
+            <img src="./img/Ludwig.png" alt="Ludwig" title="Ludwig" />
+            <img src="./img/MediumMii.png" alt="MediumMii" title="Medium Mii" />
           </td>
           <td>
-            <img src="./img/StandardKart.png" alt="StandardKart"/>
-            <img src="./img/300SLRoadster.png" alt="300SLRoadster"/>
-            <img src="./img/TheDuke.png" alt="TheDuke"/>
+            <img src="./img/StandardKart.png" alt="StandardKart" title="Standard Kart" />
+            <img src="./img/300SLRoadster.png" alt="300SLRoadster" title="300 SL Roadster" />
+            <img src="./img/TheDuke.png" alt="TheDuke" title="The Duke" />
           </td>
           <td>
-            <img src="./img/Standard.png" alt="Standard"/>
-            <img src="./img/BlueStandard.png" alt="BlueStandard"/>
+            <img src="./img/Standard.png" alt="Standard" title="Standard" />
+            <img src="./img/BlueStandard.png" alt="BlueStandard" title="Blue Standard" />
           </td>
           <td>
-            <img src="./img/SuperGlider.png" alt="SuperGlider"/>
-            <img src="./img/WaddleWing.png" alt="WaddleWing"/>
-            <img src="./img/HylianKite.png" alt="HylianKite"/>
+            <img src="./img/SuperGlider.png" alt="SuperGlider" title="Super Glider" />
+            <img src="./img/WaddleWing.png" alt="WaddleWing" title="Waddle Wing" />
+            <img src="./img/HylianKite.png" alt="HylianKite" title="Hylian Kite" />
           </td>
         </tr>
       </tbody>

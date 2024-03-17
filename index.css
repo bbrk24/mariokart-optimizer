@@ -2,10 +2,6 @@ img {
   width: min(2.5em, calc((100vw - 6.5em) / 8));
 }
 
-button[type="button"] {
-  margin-top: 0.25em;
-}
-
 button, select, input[type="number"] {
   font-size: 0.8333rem;
 }
@@ -72,6 +68,10 @@ menu {
 
 select[id$="-select"] {
   margin-bottom: 1.5em;
+}
+
+button[id^="limit-"] {
+  margin-top: 0.25em;
 }
 
 menu:empty {

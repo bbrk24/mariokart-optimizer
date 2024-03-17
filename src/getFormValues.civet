@@ -1,0 +1,57 @@
+// @ts-nocheck
+type { OptimizeOptions } from ./optimize.civet
+export default getFormValues := :OptimizeOptions =>
+    accel:
+        min: document.getElementById('accel-min').value |> Number
+        max: document.getElementById('accel-max').value |> Number
+        opt: document.getElementById('accel-opt').value
+    handling:
+        land:
+            min: document.getElementById('land-handling-min').value |> Number
+            max: document.getElementById('land-handling-max').value |> Number
+            opt: document.getElementById('land-handling-opt').value
+        water:
+            min: document.getElementById('water-handling-min').value |> Number
+            max: document.getElementById('water-handling-max').value |> Number
+            opt: document.getElementById('water-handling-opt').value
+        air:
+            min: document.getElementById('air-handling-min').value |> Number
+            max: document.getElementById('air-handling-max').value |> Number
+            opt: document.getElementById('air-handling-opt').value
+        antigrav:
+            min: document.getElementById('antigrav-handling-min').value |> Number
+            max: document.getElementById('antigrav-handling-max').value |> Number
+            opt: document.getElementById('antigrav-handling-opt').value
+    invuln:
+        min: document.getElementById('invuln-min').value |> Number
+        max: document.getElementById('invuln-max').value |> Number
+        opt: document.getElementById('invuln-opt').value
+    miniTurbo:
+        min: document.getElementById('mini-turbo-min').value |> Number
+        max: document.getElementById('mini-turbo-max').value |> Number
+        opt: document.getElementById('mini-turbo-opt').value
+    speed:
+        land:
+            min: document.getElementById('land-speed-min').value |> Number
+            max: document.getElementById('land-speed-max').value |> Number
+            opt: document.getElementById('land-speed-opt').value
+        water:
+            min: document.getElementById('water-speed-min').value |> Number
+            max: document.getElementById('water-speed-max').value |> Number
+            opt: document.getElementById('water-speed-opt').value
+        air:
+            min: document.getElementById('air-speed-min').value |> Number
+            max: document.getElementById('air-speed-max').value |> Number
+            opt: document.getElementById('air-speed-opt').value
+        antigrav:
+            min: document.getElementById('antigrav-speed-min').value |> Number
+            max: document.getElementById('antigrav-speed-max').value |> Number
+            opt: document.getElementById('antigrav-speed-opt').value
+    traction:
+        min: document.getElementById('traction-min').value |> Number
+        max: document.getElementById('traction-max').value |> Number
+        opt: document.getElementById('traction-opt').value
+    weight: 
+        min: document.getElementById('weight-min').value |> Number
+        max: document.getElementById('weight-max').value |> Number
+        opt: document.getElementById('weight-opt').value

@@ -1,97 +1,45 @@
-// @ts-nocheck
+// @/ts-nocheck
 'civet coffeePrototype'
 
 data from ./data.civet
 { optimize, sum } from ./optimize.civet
+getFormValues from ./getFormValues.civet
+type { BaseStatBlock } from ./yamlTypes.civet
 
 limitedData .= structuredClone data
 
-document.querySelector 'form'
-    .addEventListener 'submit', (e) ->
-        e.preventDefault()
-        results := optimize
-            {
-                characters: limitedData.characters.filter .characters.#
-                karts: limitedData.karts.filter .karts.#
-                wheels: limitedData.wheels.filter .wheels.#
-                gliders: limitedData.gliders.filter .gliders.#
-            }
-            {
-                accel:
-                    min: document.getElementById('accel-min').value |> Number
-                    max: document.getElementById('accel-max').value |> Number
-                    opt: document.getElementById('accel-opt').value
-                handling:
-                    land:
-                        min: document.getElementById('land-handling-min').value |> Number
-                        max: document.getElementById('land-handling-max').value |> Number
-                        opt: document.getElementById('land-handling-opt').value
-                    water:
-                        min: document.getElementById('water-handling-min').value |> Number
-                        max: document.getElementById('water-handling-max').value |> Number
-                        opt: document.getElementById('water-handling-opt').value
-                    air:
-                        min: document.getElementById('air-handling-min').value |> Number
-                        max: document.getElementById('air-handling-max').value |> Number
-                        opt: document.getElementById('air-handling-opt').value
-                    antigrav:
-                        min: document.getElementById('antigrav-handling-min').value |> Number
-                        max: document.getElementById('antigrav-handling-max').value |> Number
-                        opt: document.getElementById('antigrav-handling-opt').value
-                invuln:
-                    min: document.getElementById('invuln-min').value |> Number
-                    max: document.getElementById('invuln-max').value |> Number
-                    opt: document.getElementById('invuln-opt').value
-                miniTurbo:
-                    min: document.getElementById('mini-turbo-min').value |> Number
-                    max: document.getElementById('mini-turbo-max').value |> Number
-                    opt: document.getElementById('mini-turbo-opt').value
-                speed:
-                    land:
-                        min: document.getElementById('land-speed-min').value |> Number
-                        max: document.getElementById('land-speed-max').value |> Number
-                        opt: document.getElementById('land-speed-opt').value
-                    water:
-                        min: document.getElementById('water-speed-min').value |> Number
-                        max: document.getElementById('water-speed-max').value |> Number
-                        opt: document.getElementById('water-speed-opt').value
-                    air:
-                        min: document.getElementById('air-speed-min').value |> Number
-                        max: document.getElementById('air-speed-max').value |> Number
-                        opt: document.getElementById('air-speed-opt').value
-                    antigrav:
-                        min: document.getElementById('antigrav-speed-min').value |> Number
-                        max: document.getElementById('antigrav-speed-max').value |> Number
-                        opt: document.getElementById('antigrav-speed-opt').value
-                traction:
-                    min: document.getElementById('traction-min').value |> Number
-                    max: document.getElementById('traction-max').value |> Number
-                    opt: document.getElementById('traction-opt').value
-                weight: 
-                    min: document.getElementById('weight-min').value |> Number
-                    max: document.getElementById('weight-max').value |> Number
-                    opt: document.getElementById('weight-opt').value
-            }
-            document.getElementById('inward-drift').value
-        document.getElementById('output').innerHTML = results
-            .map (el) => `<tr><td>${
-                [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders
-                    ].map(
-                        .map((name) => `<img src="./img/${name}.png" alt="${name}"/>`).join ' '
-                    ).join '</td><td>'
-            }</td></tr>`
-            .join ''
-        if results.# > 0
-            setPreviewedKart
-                results.0.0.characters.0
-                results.0.1.karts.0
-                results.0.2.wheels.0
-                results.0.3.gliders.0
-
-kartPreview := document.getElementById 'kart-preview'
-kartPreview.innerHTML = ''
-
 rgx := /(?<=[^A-Z])[A-Z]|(?!^)[A-Z][a-z]|(?<=\D)\d/g
+
+form := document.querySelector('form')!
+form.addEventListener 'submit', (e) ->
+    e.preventDefault()
+    results := optimize
+        {
+            characters: limitedData.characters.filter .characters.#
+            karts: limitedData.karts.filter .karts.#
+            wheels: limitedData.wheels.filter .wheels.#
+            gliders: limitedData.gliders.filter .gliders.#
+        }
+        getFormValues()
+        // @ts-expect-error I have neither the time nor the crayons to fix this line
+        document.getElementById('inward-drift').value
+    document.getElementById('output')!.innerHTML = results
+        .map (el) => `<tr><td>${
+            [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders
+                ].map(
+                    .map((name) => `<img src="./img/${name}.png" alt="${name}" title="${name.replace rgx, ' $&'}"/>`).join ' '
+                ).join '</td><td>'
+        }</td></tr>`
+        .join ''
+    if results.# > 0
+        setPreviewedKart
+            results.0.0.characters.0
+            results.0.1.karts.0
+            results.0.2.wheels.0
+            results.0.3.gliders.0
+
+kartPreview := document.getElementById('kart-preview')!
+kartPreview.innerHTML = ''
 
 characterLabel := document.createElement 'label'
 characterLabel.textContent = 'Character'
@@ -100,7 +48,7 @@ characterLabel.htmlFor = characterDropdown.id = 'character-select'
 for each statBlock, i of data.characters
     for name of statBlock.characters
         document.createElement 'option'
-            ||> .value = i
+            ||> .value = String i
             ||> .textContent = name.replace rgx, ' $&'
             |> characterDropdown.appendChild
 kartPreview.appendChild characterLabel
@@ -116,7 +64,7 @@ kartLabel.htmlFor = kartDropdown.id = 'kart-select'
 for each statBlock, i of data.karts
     for name of statBlock.karts
         document.createElement 'option'
-            ||> .value = i
+            ||> .value = String i
             ||> .textContent = name.replace rgx, ' $&'
             |> kartDropdown.appendChild
 kartPreview.appendChild kartLabel
@@ -132,7 +80,7 @@ wheelLabel.htmlFor = wheelDropdown.id = 'wheel-select'
 for each statBlock, i of data.wheels
     for name of statBlock.wheels
         document.createElement 'option'
-            ||> .value = i
+            ||> .value = String i
             ||> .textContent = name.replace rgx, ' $&'
             |> wheelDropdown.appendChild
 kartPreview.appendChild wheelLabel
@@ -148,7 +96,7 @@ gliderLabel.htmlFor = gliderDropdown.id = 'glider-select'
 for each statBlock, i of data.gliders
     for name of statBlock.gliders
         document.createElement 'option'
-            ||> .value = i
+            ||> .value = String i
             ||> .textContent = name.replace rgx, ' $&'
             |> gliderDropdown.appendChild
 kartPreview.appendChild gliderLabel
@@ -167,7 +115,7 @@ makeMeter := (id: string, value: number) =>
     document.createElement 'div'
         ||> .className = 'meter'
         ||> .id = id
-        ||> .style = `--meter-length: ${value * 100/6}%;`
+        ||> .style.cssText = `--meter-length: ${value * 100/6}%;`
         |> .outerHTML
 
 rivalsDiv := document.createElement 'div'
@@ -186,16 +134,48 @@ rivalImgContainer := document.createElement 'span'
     ||> rivalsDiv.appendChild
 
 updatePreview := :void =>
-    character := data.characters[characterDropdown.value]
-    characterName := Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''
-    characterImg.src = `./img/${characterName}.png`
-    kart := data.karts[kartDropdown.value]
-    kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
-    wheel := data.wheels[wheelDropdown.value]
-    wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
-    glider := data.gliders[gliderDropdown.value]
-    gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
-    statBlock := sum character, kart, wheel, glider
+    try
+        rivalImgContainer.innerHTML = ''
+        characterName := Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''
+        characterImg.src = `./img/${characterName}.png`
+        try for rival of data.rivals[characterName]
+            document.createElement 'img'
+                ||> .alt = rival.replace rgx, ' $&'
+                ||> .src = `./img/${rival}.png`
+                |> rivalImgContainer.appendChild
+    catch
+        characterImg.src = ''
+
+    character := try data.characters[+characterDropdown.value]
+    kart := try data.karts[+kartDropdown.value]
+    wheel := try data.wheels[+wheelDropdown.value]
+    glider := try data.gliders[+gliderDropdown.value]
+
+    imgError .= false
+    try 
+        kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+    catch
+        kartImg.src = ''
+        imgError = true
+    try
+        wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+    catch
+        wheelImg.src = ''
+        imgError = true
+    try
+        gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+    catch
+        gliderImg.src = ''
+        imgError = true
+
+    unless character? and kart? and wheel? and glider? and not imgError
+        document.querySelectorAll<HTMLElement> '.meter'
+            .forEach .style.cssText = ''
+        statsDisplay.querySelectorAll<HTMLTableCellElement> 'td:last-child'
+            .forEach .innerHTML = ''
+        return
+
+    statBlock := sum<BaseStatBlock> character, kart, wheel, glider
     statsDisplay.innerHTML = ```
         <table><tbody>
         <tr><td><label for="land-speed-prev">Land speed</label></td><td>${makeMeter 'land-speed-prev', statBlock.speed.land}</td><td>${statBlock.speed.land}</td></tr>
@@ -214,12 +194,6 @@ updatePreview := :void =>
         </tbody></table>
         ```
     statsDisplay.appendChild rivalsDiv
-    rivalImgContainer.innerHTML = ''
-    for rival of data.rivals[characterName]
-        document.createElement 'img'
-            ||> .alt = rival.replace rgx, ' $&'
-            ||> .src = `./img/${rival}.png`
-            ||> rivalImgContainer.appendChild
 
 updatePreview()
 
@@ -232,20 +206,26 @@ function setPreviewedKart(character: string, kart: string, wheels: string, glide
     gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.textContent.replaceAll(' ', '') is glider
     updatePreview()
 
-menu := document.querySelector 'menu'
+menu := document.querySelector('menu')!
 let currMenu?: string
 
 installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
-    document.getElementById `limit-${name}`
+    document.getElementById(`limit-${name}`)!
         .addEventListener 'click', :void ->
             menu.innerHTML = ''
             if currMenu is name
                 currMenu = undefined
             else
+                // Due to the structure of the data, what I'm doing is safe, but TS can't prove it.
+                // Unfortunately, I need to remind it of such no fewer than five times.
+
                 currMenu = name
-                totalNames := data[name].flatMap &[name]
-                indices := data[name].flatMap (el, i) => Array(el[name].#).fill i
-                includedNames := limitedData[name].flatMap &[name]
+                // @ts-ignore shut up
+                totalNames: string[] := data[name].flatMap &[name]
+                // @ts-ignore shut up
+                indices: number[] := data[name].flatMap (el, i) => Array(el[name].#).fill i
+                // @ts-ignore shut up
+                includedNames: string[] := limitedData[name].flatMap &[name]
 
                 total := totalNames.#
                 selectedCount .= includedNames.#
@@ -255,13 +235,15 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                         'change'
                         ->
                             if @checked
-                                document.querySelectorAll '[type="checkbox"]'
+                                menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
                                     .forEach .checked = true
+                                // @ts-ignore It's just not correlating the LHS (&) with the RHS (|)
                                 limitedData[name] = structuredClone data[name]
                                 selectedCount = total
                             else
-                                document.querySelectorAll '[type="checkbox"]'
+                                menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
                                     .forEach .checked = false
+                                // @ts-ignore shut up
                                 limitedData[name].forEach &[name] = []
                                 selectedCount = 0
                         { +passive }
@@ -287,8 +269,10 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                     checkBox.checked = (currName is in includedNames)
                     index := indices[i]
                     checkBox.addEventListener 'change', ->
+                        // @ts-ignore shut up
+                        limitedNames: string[] := limitedData[name][index][name]
                         if @checked
-                            limitedData[name][index][name].push currName
+                            limitedNames.push currName
                             ++selectedCount
                             if selectedCount is total
                                 // why do I have to do both
@@ -297,9 +281,9 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                             else
                                 allCheckbox.indeterminate = true
                         else
-                            idx := limitedData[name][index][name].indexOf currName
+                            idx := limitedNames.indexOf currName
                             if idx >= 0
-                                limitedData[name][index][name].splice idx, 1
+                                limitedNames.splice idx, 1
                                 --selectedCount
                                 if selectedCount is 0
                                     allCheckbox.indeterminate = false
@@ -315,15 +299,17 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                     li.appendChild label
                     menu.appendChild li
 
-['characters', 'karts', 'wheels', 'gliders'].forEach installLimitListener
+(['characters', 'karts', 'wheels', 'gliders'] as const).forEach installLimitListener
 
-document.querySelector 'button[type="reset"]'
-    .addEventListener 'click', ->
+form.addEventListener
+    'reset'
+    ->
         limitedData = structuredClone data
         menu.innerHTML = ''
         currMenu = undefined
+    { +passive }
 
-document.querySelectorAll '.info'
+document.querySelectorAll<HTMLElement> '.info'
     .forEach .addEventListener
         'click'
         -> alert @title

@@ -61,7 +61,7 @@ maxOpts: OptimizeOptions :=
         air: min: 0, max: 6, opt: 'max'
         antigrav: min: 0, max: 6, opt: 'max'
 
-export optimize := (data: YamlData, options: OptimizeOptions, inwardDrift: 'both' | 'yes' | 'no') =>
+export optimize := (data: Omit<YamlData, 'rivals'>, options: OptimizeOptions, inwardDrift: 'both' | 'yes' | 'no') =>
     maxValue .= -Infinity
     let results: [Yaml.CharacterStatBlock, Yaml.KartStatBlock, Yaml.WheelStatBlock, Yaml.GliderStatBlock, Yaml.BaseStatBlock][] = []
     for kart of data.karts
