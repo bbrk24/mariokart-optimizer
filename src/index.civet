@@ -1,4 +1,3 @@
-// @/ts-nocheck
 'civet coffeePrototype'
 
 data from ./data.civet
@@ -11,7 +10,7 @@ limitedData .= structuredClone data
 rgx := /(?<=[^A-Z])[A-Z]|(?!^)[A-Z][a-z]|(?<=\D)\d/g
 
 form := document.querySelector('form')!
-form.addEventListener 'submit', (e) ->
+form.addEventListener 'submit', (e) =>
     e.preventDefault()
     results := optimize
         {
@@ -49,12 +48,12 @@ for each statBlock, i of data.characters
     for name of statBlock.characters
         document.createElement 'option'
             ||> .value = String i
-            ||> .textContent = name.replace rgx, ' $&'
+            ||> .text = name.replace rgx, ' $&'
             |> characterDropdown.appendChild
 kartPreview.appendChild characterLabel
 kartPreview.append ' '
 kartPreview.appendChild characterDropdown
-characterImg := document.createElement 'img' ||> kartPreview.appendChild 
+characterImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 kartLabel := document.createElement 'label'
@@ -65,12 +64,12 @@ for each statBlock, i of data.karts
     for name of statBlock.karts
         document.createElement 'option'
             ||> .value = String i
-            ||> .textContent = name.replace rgx, ' $&'
+            ||> .text = name.replace rgx, ' $&'
             |> kartDropdown.appendChild
 kartPreview.appendChild kartLabel
 kartPreview.append ' '
 kartPreview.appendChild kartDropdown
-kartImg := document.createElement 'img' ||> kartPreview.appendChild 
+kartImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 wheelLabel := document.createElement 'label'
@@ -81,12 +80,12 @@ for each statBlock, i of data.wheels
     for name of statBlock.wheels
         document.createElement 'option'
             ||> .value = String i
-            ||> .textContent = name.replace rgx, ' $&'
+            ||> .text = name.replace rgx, ' $&'
             |> wheelDropdown.appendChild
 kartPreview.appendChild wheelLabel
 kartPreview.append ' '
 kartPreview.appendChild wheelDropdown
-wheelImg := document.createElement 'img' ||> kartPreview.appendChild 
+wheelImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 gliderLabel := document.createElement 'label'
@@ -97,19 +96,19 @@ for each statBlock, i of data.gliders
     for name of statBlock.gliders
         document.createElement 'option'
             ||> .value = String i
-            ||> .textContent = name.replace rgx, ' $&'
+            ||> .text = name.replace rgx, ' $&'
             |> gliderDropdown.appendChild
 kartPreview.appendChild gliderLabel
 kartPreview.append ' '
 kartPreview.appendChild gliderDropdown
-gliderImg := document.createElement 'img' ||> kartPreview.appendChild 
+gliderImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 kartPreview.appendChild document.createElement 'br'
 
 statsDisplay := document.createElement 'div'
     ||> .id = 'stats-display'
-    ||> kartPreview.appendChild
+    |> kartPreview.appendChild
 
 makeMeter := (id: string, value: number) =>
     document.createElement 'div'
@@ -127,16 +126,15 @@ rivalInfoString := 'When playing as P1 in a Grand Prix, these characters are gua
 document.createElement 'sup'
     ||> .className = 'info'
     ||> .title = rivalInfoString
-    ||> rivalsDiv.appendChild
+    |> rivalsDiv.appendChild
 rivalsDiv.append ': '
 
-rivalImgContainer := document.createElement 'span'
-    ||> rivalsDiv.appendChild
+rivalImgContainer := document.createElement 'span' |> rivalsDiv.appendChild
 
 updatePreview := :void =>
     try
         rivalImgContainer.innerHTML = ''
-        characterName := Array::find.call(characterDropdown.options, .selected).textContent.replaceAll ' ', ''
+        characterName := Array::find.call(characterDropdown.options, .selected).text.replaceAll ' ', ''
         characterImg.src = `./img/${characterName}.png`
         try for rival of data.rivals[characterName]
             document.createElement 'img'
@@ -153,17 +151,17 @@ updatePreview := :void =>
 
     imgError .= false
     try 
-        kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+        kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).text.replaceAll ' ', ''}.png`
     catch
         kartImg.src = ''
         imgError = true
     try
-        wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+        wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).text.replaceAll ' ', ''}.png`
     catch
         wheelImg.src = ''
         imgError = true
     try
-        gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).textContent.replaceAll ' ', ''}.png`
+        gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).text.replaceAll ' ', ''}.png`
     catch
         gliderImg.src = ''
         imgError = true
@@ -200,10 +198,10 @@ updatePreview()
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
 function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
-    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, &.textContent.replaceAll(' ', '') is character
-    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, &.textContent.replaceAll(' ', '') is kart
-    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, &.textContent.replaceAll(' ', '') is wheels
-    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.textContent.replaceAll(' ', '') is glider
+    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, &.text.replaceAll(' ', '') is character
+    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, &.text.replaceAll(' ', '') is kart
+    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, &.text.replaceAll(' ', '') is wheels
+    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.text.replaceAll(' ', '') is glider
     updatePreview()
 
 menu := document.querySelector('menu')!
@@ -211,99 +209,101 @@ let currMenu?: string
 
 installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
     document.getElementById(`limit-${name}`)!
-        .addEventListener 'click', :void ->
-            menu.innerHTML = ''
-            if currMenu is name
-                currMenu = undefined
-            else
-                // Due to the structure of the data, what I'm doing is safe, but TS can't prove it.
-                // Unfortunately, I need to remind it of such no fewer than five times.
+        .addEventListener
+            'click',
+            :void =>
+                menu.innerHTML = ''
+                if currMenu is name
+                    currMenu = undefined
+                else
+                    // Due to the structure of the data, what I'm doing is safe, but TS can't prove it.
+                    // Unfortunately, I need to remind it of such no fewer than five times.
 
-                currMenu = name
-                // @ts-ignore shut up
-                totalNames: string[] := data[name].flatMap &[name]
-                // @ts-ignore shut up
-                indices: number[] := data[name].flatMap (el, i) => Array(el[name].#).fill i
-                // @ts-ignore shut up
-                includedNames: string[] := limitedData[name].flatMap &[name]
+                    currMenu = name
+                    // @ts-ignore shut up
+                    totalNames: string[] := data[name].flatMap &[name]
+                    // @ts-ignore shut up
+                    indices := data[name].flatMap (el, i) => Array<number>(el[name].#).fill i
+                    // @ts-ignore shut up
+                    includedNames: string[] := limitedData[name].flatMap &[name]
 
-                total := totalNames.#
-                selectedCount .= includedNames.#
-                allCheckbox := document.createElement 'input'
-                    ||> .type = 'checkbox'
-                    ||> .addEventListener
-                        'change'
-                        ->
-                            if @checked
-                                menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
-                                    .forEach .checked = true
-                                // @ts-ignore It's just not correlating the LHS (&) with the RHS (|)
-                                limitedData[name] = structuredClone data[name]
-                                selectedCount = total
-                            else
-                                menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
-                                    .forEach .checked = false
-                                // @ts-ignore shut up
-                                limitedData[name].forEach &[name] = []
-                                selectedCount = 0
-                        { +passive }
-                    ||> menu.appendChild
-
-                switch selectedCount
-                    when 0
-                        allCheckbox.checked = false
-                    when total
-                        allCheckbox.checked = true
-                    else
-                        allCheckbox.indeterminate = true
-
-                document.createElement 'label'
-                    ||> .textContent = 'All'
-                    ||> .htmlFor = allCheckbox.id = 'checkbox-all'
-                    |> menu.appendChild
-
-                for each currName, i of totalNames
-                    li := document.createElement 'li'
-                    checkBox := document.createElement 'input'
+                    total := totalNames.#
+                    selectedCount .= includedNames.#
+                    allCheckbox := document.createElement 'input'
                         ||> .type = 'checkbox'
-                    checkBox.checked = (currName is in includedNames)
-                    index := indices[i]
-                    checkBox.addEventListener 'change', ->
-                        // @ts-ignore shut up
-                        limitedNames: string[] := limitedData[name][index][name]
-                        if @checked
-                            limitedNames.push currName
-                            ++selectedCount
-                            if selectedCount is total
-                                // why do I have to do both
-                                allCheckbox.indeterminate = false
-                                allCheckbox.checked = true
-                            else
-                                allCheckbox.indeterminate = true
+                        ||> .addEventListener
+                            'change'
+                            ->
+                                if @checked
+                                    menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
+                                        .forEach .checked = true
+                                    // @ts-ignore It's just not correlating the LHS (&) with the RHS (|)
+                                    limitedData[name] = structuredClone data[name]
+                                    selectedCount = total
+                                else
+                                    menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
+                                        .forEach .checked = false
+                                    // @ts-ignore shut up
+                                    limitedData[name].forEach &[name] = []
+                                    selectedCount = 0
+                            { +passive }
+                        |> menu.appendChild
+
+                    switch selectedCount
+                        when 0
+                            allCheckbox.checked = false
+                        when total
+                            allCheckbox.checked = true
                         else
-                            idx := limitedNames.indexOf currName
-                            if idx >= 0
-                                limitedNames.splice idx, 1
-                                --selectedCount
-                                if selectedCount is 0
+                            allCheckbox.indeterminate = true
+
+                    document.createElement 'label'
+                        ||> .textContent = 'All'
+                        ||> .htmlFor = allCheckbox.id = 'checkbox-all'
+                        |> menu.appendChild
+
+                    for each currName, i of totalNames
+                        li := document.createElement 'li'
+                        checkBox := document.createElement 'input' ||> .type = 'checkbox'
+                        checkBox.checked = (currName is in includedNames)
+                        index := indices[i]
+                        checkBox.addEventListener 'change', ->
+                            // @ts-ignore shut up
+                            limitedNames: string[] := limitedData[name][index][name]
+                            if @checked
+                                limitedNames.push currName
+                                ++selectedCount
+                                if selectedCount is total
+                                    // why do I have to do both
                                     allCheckbox.indeterminate = false
-                                    allCheckbox.checked = false
+                                    allCheckbox.checked = true
                                 else
                                     allCheckbox.indeterminate = true
+                            else
+                                idx := limitedNames.indexOf currName
+                                if idx >= 0
+                                    limitedNames.splice idx, 1
+                                    --selectedCount
+                                    if selectedCount is 0
+                                        allCheckbox.indeterminate = false
+                                        allCheckbox.checked = false
+                                    else
+                                        allCheckbox.indeterminate = true
 
-                    label := document.createElement 'label'
-                    label.htmlFor = checkBox.id = `checkbox-${currName}`
-                    label.textContent = currName.replace rgx, ' $&'
+                        label := document.createElement 'label'
+                        label.htmlFor = checkBox.id = `checkbox-${currName}`
+                        label.textContent = currName.replace rgx, ' $&'
 
-                    li.appendChild checkBox
-                    li.appendChild label
-                    menu.appendChild li
+                        li.appendChild checkBox
+                        li.appendChild label
+                        menu.appendChild li
+            { +passive }
 
 (['characters', 'karts', 'wheels', 'gliders'] as const).forEach installLimitListener
 
 form.addEventListener
     'reset'
-    ->
+    =>
         limitedData = structuredClone data
         menu.innerHTML = ''
         currMenu = undefined
