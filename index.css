@@ -27,10 +27,6 @@ menu {
   }
 }
 
-.info {
-  text-decoration: dotted underline;
-}
-
 :root {
   --meter-length: 0;
 }
@@ -80,6 +76,11 @@ select[id$="-select"] {
 
 menu:empty {
   margin: 0.25em 0;
+}
+
+.info::before {
+  content: "\00fe0e\002139";
+  text-decoration: dotted underline;
 }
 
 #rivals {

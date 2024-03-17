@@ -177,13 +177,8 @@ rivalsDiv := document.createElement 'div'
 rivalInfoString := 'When playing as P1 in a Grand Prix, these characters are guaranteed to be COM characters and should be better than other COMs, unless they are chosen by other players. Not all characters have rivals.'
 
 document.createElement 'sup'
-    ||> .textContent = '\ufe0e\u2139'
     ||> .className = 'info'
     ||> .title = rivalInfoString
-    ||> .addEventListener
-        'click'
-        -> alert rivalInfoString
-        { +passive }
     ||> rivalsDiv.appendChild
 rivalsDiv.append ': '
 
@@ -327,3 +322,9 @@ document.querySelector 'button[type="reset"]'
         limitedData = structuredClone data
         menu.innerHTML = ''
         currMenu = undefined
+
+document.querySelectorAll '.info'
+    .forEach .addEventListener
+        'click'
+        -> alert @title
+        { +passive }
