@@ -306,6 +306,7 @@ characters:
     miniTurbo: 2.75
     invuln: 3.75
   - characters:
+      - Bowser
       - Morton
     speed:
       land: 4.75
