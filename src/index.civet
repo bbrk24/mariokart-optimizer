@@ -242,7 +242,7 @@ let currMenu?: string
 
 installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
     document.getElementById `limit-${name}`
-        .addEventListener 'click', ->
+        .addEventListener 'click', :void ->
             menu.innerHTML = ''
             if currMenu is name
                 currMenu = undefined
@@ -251,6 +251,40 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                 totalNames := data[name].flatMap &[name]
                 indices := data[name].flatMap (el, i) => Array(el[name].#).fill i
                 includedNames := limitedData[name].flatMap &[name]
+
+                total := totalNames.#
+                selectedCount .= includedNames.#
+                allCheckbox := document.createElement 'input'
+                    ||> .type = 'checkbox'
+                    ||> .addEventListener
+                        'change'
+                        ->
+                            if @checked
+                                document.querySelectorAll '[type="checkbox"]'
+                                    .forEach .checked = true
+                                limitedData[name] = structuredClone data[name]
+                                selectedCount = total
+                            else
+                                document.querySelectorAll '[type="checkbox"]'
+                                    .forEach .checked = false
+                                limitedData[name].forEach &[name] = []
+                                selectedCount = 0
+                        { +passive }
+                    ||> menu.appendChild
+
+                switch selectedCount
+                    when 0
+                        allCheckbox.checked = false
+                    when total
+                        allCheckbox.checked = true
+                    else
+                        allCheckbox.indeterminate = true
+
+                document.createElement 'label'
+                    ||> .textContent = 'All'
+                    ||> .htmlFor = allCheckbox.id = 'checkbox-all'
+                    |> menu.appendChild
+
                 for each currName, i of totalNames
                     li := document.createElement 'li'
                     checkBox := document.createElement 'input'
@@ -260,10 +294,23 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                     checkBox.addEventListener 'change', ->
                         if @checked
                             limitedData[name][index][name].push currName
+                            ++selectedCount
+                            if selectedCount is total
+                                // why do I have to do both
+                                allCheckbox.indeterminate = false
+                                allCheckbox.checked = true
+                            else
+                                allCheckbox.indeterminate = true
                         else
                             idx := limitedData[name][index][name].indexOf currName
                             if idx >= 0
                                 limitedData[name][index][name].splice idx, 1
+                                --selectedCount
+                                if selectedCount is 0
+                                    allCheckbox.indeterminate = false
+                                    allCheckbox.checked = false
+                                else
+                                    allCheckbox.indeterminate = true
 
                     label := document.createElement 'label'
                     label.htmlFor = checkBox.id = `checkbox-${currName}`
