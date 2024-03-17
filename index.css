@@ -12,6 +12,7 @@ button, select, input[type="number"] {
 
 menu {
   columns: 2;
+  position: relative;
 }
 
 @media screen and (min-width: 36em) {
@@ -96,6 +97,15 @@ menu:empty {
   #rivals {
     margin-left: 1em;
   }
+}
+
+#checkbox-all {
+  position: absolute;
+  left: 1.75em;
+}
+
+label[for="checkbox-all"] {
+  padding-left: 0.25em;
 }
 
 #output td {
