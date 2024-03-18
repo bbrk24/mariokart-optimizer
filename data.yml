@@ -326,7 +326,6 @@ characters:
 karts:
   - karts:
       - StandardKart
-      - '300SLRoadster'
       - TheDuke
     speed:
       land: 0
@@ -384,7 +383,6 @@ karts:
   - karts:
       - SteelDriver
       - TriSpeeder
-      - BoneRattler
     speed:
       land: 0.25
       water: 0.5
@@ -447,7 +445,7 @@ karts:
       water: -0.25
       air: -0.5
       antigrav: 0
-    accel: 0
+    accel: -1
     weight: 0.5
     handling:
       land: -0.75
@@ -466,7 +464,7 @@ karts:
       air: 0
       antigrav: 0
     accel: -0.5
-    weight: -0.5
+    weight: -0.25
     handling:
       land: 0
       water: 0.25
@@ -567,6 +565,24 @@ karts:
       air: 0
       antigrav: 0.25
     traction: 0.5
+    miniTurbo: 0.25
+    invuln: 0.25
+    inwardDrift: false
+  - karts:
+      - '300SLRoadster'
+    speed:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    accel: 0
+    weight: 0
+    handling:
+      land: 0
+      water: 0
+      air: 0
+      antigrav: 0
+    traction: 0
     miniTurbo: 0.25
     invuln: 0.25
     inwardDrift: false
@@ -772,6 +788,24 @@ karts:
     invuln: -0.5
     inwardDrift: false
   - karts:
+      - BoneRattler
+    speed:
+      land: 0.25
+      water: 0.5
+      air: -0.75
+      antigrav: -0.25
+    accel: -0.75
+    weight: 0.5
+    handling:
+      land: -0.5
+      water: 0.75
+      air: -0.5
+      antigrav: -0.5
+    traction: 0
+    miniTurbo: -0.25
+    invuln: 0.5
+    inwardDrift: false
+  - karts:
       - SplatBuggy
     speed:
       land: 0.25
@@ -888,7 +922,7 @@ wheels:
       land: 0.5
       water: -0.75
       air: -0.75
-      antigrav: 0.50
+      antigrav: 0.5
     accel: -0.75
     weight: 0.25
     handling:
