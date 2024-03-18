@@ -403,7 +403,6 @@ karts:
     inwardDrift: false
   - karts:
       - CatCruiser
-      - TeddyBuggy
     speed:
       land: -0.25
       water: -0.25
@@ -753,6 +752,24 @@ karts:
     traction: 0.5
     miniTurbo: -0.25
     invuln: 0.75
+    inwardDrift: false
+  - karts:
+      - TeddyBuggy
+    speed:
+      land: -0.25
+      water: -0.25
+      air: 0.25
+      antigrav: 0
+    accel: 0.25
+    weight: 0
+    handling:
+      land: 0.25
+      water: 0
+      air: 0.25
+      antigrav: 0
+    traction: 0
+    miniTurbo: 0.5
+    invuln: -0.5
     inwardDrift: false
   - karts:
       - SplatBuggy
