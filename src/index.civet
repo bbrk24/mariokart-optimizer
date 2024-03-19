@@ -142,7 +142,7 @@ updatePreview := :void =>
                 ||> .src = `./img/${rival}.png`
                 |> rivalImgContainer.appendChild
     catch
-        characterImg.src = ''
+        characterImg.src = './img/unknown.png'
 
     character := try data.characters[+characterDropdown.value]
     kart := try data.karts[+kartDropdown.value]
@@ -153,17 +153,17 @@ updatePreview := :void =>
     try 
         kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).text.replaceAll ' ', ''}.png`
     catch
-        kartImg.src = ''
+        kartImg.src = './img/unknown.png'
         imgError = true
     try
         wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).text.replaceAll ' ', ''}.png`
     catch
-        wheelImg.src = ''
+        wheelImg.src = './img/unknown.png'
         imgError = true
     try
         gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).text.replaceAll ' ', ''}.png`
     catch
-        gliderImg.src = ''
+        gliderImg.src = './img/unknown.png'
         imgError = true
 
     unless character? and kart? and wheel? and glider? and not imgError
@@ -198,10 +198,10 @@ updatePreview()
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
 function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
-    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, &.text.replaceAll(' ', '') is character
-    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, &.text.replaceAll(' ', '') is kart
-    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, &.text.replaceAll(' ', '') is wheels
-    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, &.text.replaceAll(' ', '') is glider
+    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, .text.replaceAll(' ', '') is character
+    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, .text.replaceAll(' ', '') is kart
+    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, .text.replaceAll(' ', '') is wheels
+    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, .text.replaceAll(' ', '') is glider
     updatePreview()
 
 menu := document.querySelector('menu')!
