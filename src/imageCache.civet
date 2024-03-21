@@ -1,0 +1,17 @@
+class ImageCache
+    #map: Map<string, HTMLImageElement>
+
+    @()
+        #map = new Map
+
+    getImage(name: string)
+        if #map.has name
+            #map.get(name)!.cloneNode() as HTMLImageElement
+        else
+            document.createElement 'img'
+                ||> .src = `./img/${name}.png`
+                ||> .alt = name
+                ||> .title = name.replace /(?<=[^A-Z])[A-Z]|(?!^)[A-Z][a-z]|(?<=\D)\d/g, ' $&'
+                ||> #map@set name
+
+export default cache := new ImageCache

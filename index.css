@@ -1,5 +1,5 @@
 img {
-  width: min(2.5em, calc((100vw - 6.5em) / 8));
+  width: min(2.5em, calc((100vw - 5.25em) / 8));
 }
 
 button, select, input[type="number"] {
@@ -7,11 +7,17 @@ button, select, input[type="number"] {
 }
 
 menu {
-  columns: 2;
   position: relative;
 }
 
-@media screen and (min-width: 36em) {
+/* The screen widths here are rounded up to an integer number of ems. */
+@media screen and (min-width: 25em) {
+  menu {
+    columns: 2;
+  }
+}
+
+@media screen and (min-width: 37em) {
   menu {
     columns: 3;
   }

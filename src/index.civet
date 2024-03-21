@@ -3,6 +3,7 @@
 data from ./data.civet
 { optimize, sum } from ./optimize.civet
 getFormValues from ./getFormValues.civet
+cache from ./imageCache.civet
 type { BaseStatBlock } from ./yamlTypes.civet
 
 limitedData .= structuredClone data
@@ -10,8 +11,14 @@ limitedData .= structuredClone data
 rgx := /(?<=[^A-Z])[A-Z]|(?!^)[A-Z][a-z]|(?<=\D)\d/g
 
 form := document.querySelector('form')!
+output := document.getElementById('output')!
+let timeoutID?: number
 form.addEventListener 'submit', (e) =>
     e.preventDefault()
+    if timeoutID?
+        clearTimeout timeoutID
+        timeoutID = undefined
+
     results := optimize
         {
             characters: limitedData.characters.filter .characters.#
@@ -22,20 +29,33 @@ form.addEventListener 'submit', (e) =>
         getFormValues()
         // @ts-expect-error I have neither the time nor the crayons to fix this line
         document.getElementById('inward-drift').value
-    document.getElementById('output')!.innerHTML = results
-        .map (el) => `<tr><td>${
-            [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders
-                ].map(
-                    .map((name) => `<img src="./img/${name}.png" alt="${name}" title="${name.replace rgx, ' $&'}"/>`).join ' '
-                ).join '</td><td>'
-        }</td></tr>`
-        .join ''
+
     if results.# > 0
         setPreviewedKart
             results.0.0.characters.0
             results.0.1.karts.0
             results.0.2.wheels.0
             results.0.3.gliders.0
+
+    output.innerHTML = ''
+    // If there's lots of results, this can take a couple seconds. So batch it and give the UI a chance to catch up.
+    appendPartialResults := (startIndex: number): void =>
+        batchSize := 1000
+        for i of [startIndex...(startIndex + batchSize)]
+            if i >= results.#
+                timeoutID = undefined
+                return
+            el := results[i]
+
+            tr := document.createElement 'tr'
+            for names of [el.0.characters, el.1.karts, el.2.wheels, el.3.gliders]
+                document.createElement 'td'
+                    ||> .append ...names.map cache@getImage
+                    |> tr.appendChild
+            output.appendChild tr
+        // 4 is the minimum timeout for chained timeouts
+        timeoutID = setTimeout appendPartialResults, 4, batchSize + startIndex
+    appendPartialResults 0
 
 kartPreview := document.getElementById('kart-preview')!
 kartPreview.textContent = ''
@@ -112,10 +132,7 @@ updatePreview := :void =>
         characterName := Array::find.call(characterDropdown.options, .selected).text.replaceAll ' ', ''
         characterImg.src = `./img/${characterName}.png`
         try for rival of data.rivals[characterName]
-            document.createElement 'img'
-                ||> .alt = rival.replace rgx, ' $&'
-                ||> .src = `./img/${rival}.png`
-                |> rivalImgContainer.appendChild
+            rival |> cache.getImage |> rivalImgContainer.appendChild
     catch
         characterImg.src = './img/unknown.png'
 
