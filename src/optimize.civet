@@ -77,5 +77,5 @@ export optimize := (data: Omit<YamlData, 'rivals'>, options: OptimizeOptions, in
                             maxValue = value
                             results = [[character, kart, wheel, glider, statBlock]]
                         else if value is maxValue
-                            results.push [character, kart, wheel, glider, statBlock]   
+                            results.push [character, kart, wheel, glider, statBlock]
     return results.sort (a, b) => optValue(b.4, maxOpts)! - optValue(a.4, maxOpts)!

@@ -38,7 +38,7 @@ form.addEventListener 'submit', (e) =>
             results.0.3.gliders.0
 
 kartPreview := document.getElementById('kart-preview')!
-kartPreview.innerHTML = ''
+kartPreview.textContent = ''
 
 characterLabel := document.createElement 'label'
 characterLabel.textContent = 'Character'
@@ -50,9 +50,7 @@ for each statBlock, i of data.characters
             ||> .value = String i
             ||> .text = name.replace rgx, ' $&'
             |> characterDropdown.appendChild
-kartPreview.appendChild characterLabel
-kartPreview.append ' '
-kartPreview.appendChild characterDropdown
+kartPreview.append characterLabel, ' ', characterDropdown
 characterImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
@@ -66,9 +64,7 @@ for each statBlock, i of data.karts
             ||> .value = String i
             ||> .text = name.replace rgx, ' $&'
             |> kartDropdown.appendChild
-kartPreview.appendChild kartLabel
-kartPreview.append ' '
-kartPreview.appendChild kartDropdown
+kartPreview.append kartLabel, ' ', kartDropdown
 kartImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
@@ -82,9 +78,7 @@ for each statBlock, i of data.wheels
             ||> .value = String i
             ||> .text = name.replace rgx, ' $&'
             |> wheelDropdown.appendChild
-kartPreview.appendChild wheelLabel
-kartPreview.append ' '
-kartPreview.appendChild wheelDropdown
+kartPreview.append wheelLabel, ' ', wheelDropdown
 wheelImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
@@ -98,40 +92,21 @@ for each statBlock, i of data.gliders
             ||> .value = String i
             ||> .text = name.replace rgx, ' $&'
             |> gliderDropdown.appendChild
-kartPreview.appendChild gliderLabel
-kartPreview.append ' '
-kartPreview.appendChild gliderDropdown
+kartPreview.append gliderLabel, ' ', gliderDropdown
 gliderImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 kartPreview.appendChild document.createElement 'br'
 
-statsDisplay := document.createElement 'div'
-    ||> .id = 'stats-display'
-    |> kartPreview.appendChild
-
-makeMeter := (id: string, value: number) =>
-    document.createElement 'div'
-        ||> .className = 'meter'
-        ||> .id = id
-        ||> .style.cssText = `--meter-length: ${value * 100/6}%;`
-        |> .outerHTML
-
-rivalsDiv := document.createElement 'div'
-    ||> .id = 'rivals'
-    ||> .append 'Rivals'
-
-rivalInfoString := 'When playing as P1 in a Grand Prix, these characters are guaranteed to be COM characters and should be better than other COMs, unless they are chosen by other players. Not all characters have rivals.'
-
-document.createElement 'sup'
-    ||> .className = 'info'
-    ||> .title = rivalInfoString
-    |> rivalsDiv.appendChild
-rivalsDiv.append ': '
-
+rivalsDiv := document.getElementById('rivals') as HTMLDivElement
 rivalImgContainer := document.createElement 'span' |> rivalsDiv.appendChild
 
 updatePreview := :void =>
+    character := try data.characters[+characterDropdown.value]
+    kart := try data.karts[+kartDropdown.value]
+    wheel := try data.wheels[+wheelDropdown.value]
+    glider := try data.gliders[+gliderDropdown.value]
+
     try
         rivalImgContainer.innerHTML = ''
         characterName := Array::find.call(characterDropdown.options, .selected).text.replaceAll ' ', ''
@@ -143,11 +118,6 @@ updatePreview := :void =>
                 |> rivalImgContainer.appendChild
     catch
         characterImg.src = './img/unknown.png'
-
-    character := try data.characters[+characterDropdown.value]
-    kart := try data.karts[+kartDropdown.value]
-    wheel := try data.wheels[+wheelDropdown.value]
-    glider := try data.gliders[+gliderDropdown.value]
 
     imgError .= false
     try 
@@ -169,29 +139,37 @@ updatePreview := :void =>
     unless character? and kart? and wheel? and glider? and not imgError
         document.querySelectorAll<HTMLElement> '.meter'
             .forEach .style.cssText = ''
-        statsDisplay.querySelectorAll<HTMLTableCellElement> 'td:last-child'
-            .forEach .innerHTML = ''
+        document.querySelectorAll<HTMLTableCellElement> '#stats-display td:last-child'
+            .forEach .textContent = ''
         return
 
     statBlock := sum<BaseStatBlock> character, kart, wheel, glider
-    statsDisplay.innerHTML = ```
-        <table><tbody>
-        <tr><td><label for="land-speed-prev">Land speed</label></td><td>${makeMeter 'land-speed-prev', statBlock.speed.land}</td><td>${statBlock.speed.land}</td></tr>
-        <tr><td><label for="water-speed-prev">Water speed</label></td><td>${makeMeter 'water-speed-prev', statBlock.speed.water}</td><td>${statBlock.speed.water}</td></tr>
-        <tr><td><label for="air-speed-prev">Air speed</label></td><td>${makeMeter 'air-speed-prev', statBlock.speed.air}</td><td>${statBlock.speed.air}</td></tr>
-        <tr><td><label for="antigrav-speed-prev">Antigravity speed</label></td><td>${makeMeter 'antigrav-speed-prev', statBlock.speed.antigrav}</td><td>${statBlock.speed.antigrav}</td></tr>
-        <tr><td><label for="accel-prev">Acceleration</label></td><td>${makeMeter 'accel-prev', statBlock.accel}</td><td>${statBlock.accel}</td></tr>
-        <tr><td><label for="weight-prev">Weight</label></td><td>${makeMeter 'weight-prev', statBlock.weight}</td><td>${statBlock.weight}</td></tr>
-        <tr><td><label for="land-handling-prev">Land handling</label></td><td>${makeMeter 'land-handling-prev', statBlock.handling.land}</td><td>${statBlock.handling.land}</td></tr>
-        <tr><td><label for="water-handling-prev">Water handling</label></td><td>${makeMeter 'water-handling-prev', statBlock.handling.water}</td><td>${statBlock.handling.water}</td></tr>
-        <tr><td><label for="air-handling-prev">Air handling</label></td><td>${makeMeter 'air-handling-prev', statBlock.handling.air}</td><td>${statBlock.handling.air}</td></tr>
-        <tr><td><label for="antigrav-handling-prev">Antigravity handling</label></td><td>${makeMeter 'antigrav-handling-prev', statBlock.handling.antigrav}</td><td>${statBlock.handling.antigrav}</td></tr>
-        <tr><td><label for="traction-prev">Traction</label></td><td>${makeMeter 'traction-prev', statBlock.traction}</td><td>${statBlock.traction}</td></tr>
-        <tr><td><label for="mini-turbo-prev">Mini-Turbo</label></td><td>${makeMeter 'mini-turbo-prev', statBlock.miniTurbo}</td><td>${statBlock.miniTurbo}</td></tr>
-        <tr><td><label for="invuln-prev">Invulnerability</label></td><td>${makeMeter 'invuln-prev', statBlock.invuln}</td><td>${statBlock.invuln}</td></tr>
-        </tbody></table>
-        ```
-    statsDisplay.appendChild rivalsDiv
+    document.getElementById('land-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.land * 100/6}%`
+    document.getElementById('land-speed-value')!.textContent = String statBlock.speed.land
+    document.getElementById('water-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.water * 100/6}%`
+    document.getElementById('water-speed-value')!.textContent = String statBlock.speed.water
+    document.getElementById('air-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.air * 100/6}%`
+    document.getElementById('air-speed-value')!.textContent = String statBlock.speed.air
+    document.getElementById('antigrav-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.antigrav * 100/6}%`
+    document.getElementById('antigrav-speed-value')!.textContent = String statBlock.speed.antigrav
+    document.getElementById('accel-prev')!.style.setProperty '--meter-length', `${statBlock.accel * 100/6}%`
+    document.getElementById('accel-value')!.textContent = String statBlock.accel
+    document.getElementById('weight-prev')!.style.setProperty '--meter-length', `${statBlock.weight * 100/6}%`
+    document.getElementById('weight-value')!.textContent = String statBlock.weight
+    document.getElementById('land-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.land * 100/6}%`
+    document.getElementById('land-handling-value')!.textContent = String statBlock.handling.land
+    document.getElementById('water-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.water * 100/6}%`
+    document.getElementById('water-handling-value')!.textContent = String statBlock.handling.water
+    document.getElementById('air-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.air * 100/6}%`
+    document.getElementById('air-handling-value')!.textContent = String statBlock.handling.air
+    document.getElementById('antigrav-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.antigrav * 100/6}%`
+    document.getElementById('antigrav-handling-value')!.textContent = String statBlock.handling.antigrav
+    document.getElementById('traction-prev')!.style.setProperty '--meter-length', `${statBlock.traction * 100/6}%`
+    document.getElementById('traction-value')!.textContent = String statBlock.traction
+    document.getElementById('mini-turbo-prev')!.style.setProperty '--meter-length', `${statBlock.miniTurbo * 100/6}%`
+    document.getElementById('mini-turbo-value')!.textContent = String statBlock.miniTurbo
+    document.getElementById('invuln-prev')!.style.setProperty '--meter-length', `${statBlock.invuln * 100/6}%`
+    document.getElementById('invuln-value')!.textContent = String statBlock.invuln
 
 updatePreview()
 
