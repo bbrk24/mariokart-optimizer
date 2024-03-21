@@ -68,6 +68,7 @@ for each statBlock, i of data.characters
     for name of statBlock.characters
         document.createElement 'option'
             ||> .value = String i
+            ||> .dataset.name = name
             ||> .text = name.replace rgx, ' $&'
             |> characterDropdown.appendChild
 kartPreview.append characterLabel, ' ', characterDropdown
@@ -82,6 +83,7 @@ for each statBlock, i of data.karts
     for name of statBlock.karts
         document.createElement 'option'
             ||> .value = String i
+            ||> .dataset.name = name
             ||> .text = name.replace rgx, ' $&'
             |> kartDropdown.appendChild
 kartPreview.append kartLabel, ' ', kartDropdown
@@ -96,6 +98,7 @@ for each statBlock, i of data.wheels
     for name of statBlock.wheels
         document.createElement 'option'
             ||> .value = String i
+            ||> .dataset.name = name
             ||> .text = name.replace rgx, ' $&'
             |> wheelDropdown.appendChild
 kartPreview.append wheelLabel, ' ', wheelDropdown
@@ -110,6 +113,7 @@ for each statBlock, i of data.gliders
     for name of statBlock.gliders
         document.createElement 'option'
             ||> .value = String i
+            ||> .dataset.name = name
             ||> .text = name.replace rgx, ' $&'
             |> gliderDropdown.appendChild
 kartPreview.append gliderLabel, ' ', gliderDropdown
@@ -122,34 +126,35 @@ rivalsDiv := document.getElementById('rivals') as HTMLDivElement
 rivalImgContainer := document.createElement 'span' |> rivalsDiv.appendChild
 
 updatePreview := :void =>
-    character := try data.characters[+characterDropdown.value]
-    kart := try data.karts[+kartDropdown.value]
-    wheel := try data.wheels[+wheelDropdown.value]
-    glider := try data.gliders[+gliderDropdown.value]
+    character?: BaseStatBlock := data.characters[+characterDropdown.value]
+    kart?: BaseStatBlock := data.karts[+kartDropdown.value]
+    wheel?: BaseStatBlock := data.wheels[+wheelDropdown.value]
+    glider?: BaseStatBlock := data.gliders[+gliderDropdown.value]
 
-    try
-        rivalImgContainer.innerHTML = ''
-        characterName := Array::find.call(characterDropdown.options, .selected).text.replaceAll ' ', ''
-        characterImg.src = `./img/${characterName}.png`
-        try for rival of data.rivals[characterName]
-            rival |> cache.getImage |> rivalImgContainer.appendChild
-    catch
-        characterImg.src = './img/unknown.png'
-
+    rivalImgContainer.innerHTML = ''
     imgError .= false
-    try 
-        kartImg.src = `./img/${Array::find.call(kartDropdown.options, .selected).text.replaceAll ' ', ''}.png`
-    catch
+
+    if characterName := characterDropdown.selectedOptions.0?.dataset.name
+        characterImg.src = `./img/${characterName}.png`
+        for rival of data.rivals[characterName]
+            rival |> cache.getImage |> rivalImgContainer.appendChild
+    else
+        characterImg.src = './img/unknown.png'
+        imgError = true
+
+    if kartName := kartDropdown.selectedOptions.0?.dataset.name
+        kartImg.src = `./img/${kartName}.png`
+    else
         kartImg.src = './img/unknown.png'
         imgError = true
-    try
-        wheelImg.src = `./img/${Array::find.call(wheelDropdown.options, .selected).text.replaceAll ' ', ''}.png`
-    catch
+    if wheelName := wheelDropdown.selectedOptions.0?.dataset.name
+        wheelImg.src = `./img/${wheelName}.png`
+    else
         wheelImg.src = './img/unknown.png'
         imgError = true
-    try
-        gliderImg.src = `./img/${Array::find.call(gliderDropdown.options, .selected).text.replaceAll ' ', ''}.png`
-    catch
+    if gliderName := gliderDropdown.selectedOptions.0?.dataset.name
+        gliderImg.src = `./img/${gliderName}.png`
+    else
         gliderImg.src = './img/unknown.png'
         imgError = true
 
@@ -160,7 +165,7 @@ updatePreview := :void =>
             .forEach .textContent = ''
         return
 
-    statBlock := sum<BaseStatBlock> character, kart, wheel, glider
+    statBlock := sum character, kart, wheel, glider
     document.getElementById('land-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.land * 100/6}%`
     document.getElementById('land-speed-value')!.textContent = String statBlock.speed.land
     document.getElementById('water-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.water * 100/6}%`
@@ -193,10 +198,10 @@ updatePreview()
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
 function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
-    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, .text.replaceAll(' ', '') is character
-    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, .text.replaceAll(' ', '') is kart
-    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, .text.replaceAll(' ', '') is wheels
-    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, .text.replaceAll(' ', '') is glider
+    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, .dataset.name is character
+    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, .dataset.name is kart
+    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, .dataset.name is wheels
+    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, .dataset.name is glider
     updatePreview()
 
 menu := document.querySelector('menu')!
@@ -260,7 +265,7 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                     for each currName, i of totalNames
                         li := document.createElement 'li'
                         checkBox := document.createElement 'input' ||> .type = 'checkbox'
-                        checkBox.checked = (currName is in includedNames)
+                        checkBox.checked = currName is in includedNames
                         index := indices[i]
                         checkBox.addEventListener 'change', ->
                             // @ts-ignore shut up
