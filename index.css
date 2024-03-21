@@ -85,7 +85,7 @@ menu:empty {
 }
 
 .info::before {
-  content: "\00fe0e\002139";
+  content: "\002139\00fe0e";
   text-decoration: dotted underline;
 }
 
