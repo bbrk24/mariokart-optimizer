@@ -125,6 +125,20 @@ kartPreview.appendChild document.createElement 'br'
 rivalsDiv := document.getElementById('rivals') as HTMLDivElement
 rivalImgContainer := document.createElement 'span' |> rivalsDiv.appendChild
 
+landSpeedMeter := document.getElementById('land-speed-prev')!
+waterSpeedMeter := document.getElementById('water-speed-prev')!
+airSpeedMeter := document.getElementById('air-speed-prev')!
+antigravSpeedMeter := document.getElementById('antigrav-speed-prev')!
+accelMeter := document.getElementById('accel-prev')!
+weightMeter := document.getElementById('weight-prev')!
+landHandlingMeter := document.getElementById('land-handling-prev')!
+waterHandlingMeter := document.getElementById('water-handling-prev')!
+airHandlingMeter := document.getElementById('air-handling-prev')!
+antigravHandlingMeter := document.getElementById('antigrav-handling-prev')!
+tractionMeter := document.getElementById('traction-prev')!
+miniTurboMeter := document.getElementById('mini-turbo-prev')!
+invulnMeter := document.getElementById('invuln-prev')!
+
 updatePreview := :void =>
     character?: BaseStatBlock := data.characters[+characterDropdown.value]
     kart?: BaseStatBlock := data.karts[+kartDropdown.value]
@@ -166,32 +180,32 @@ updatePreview := :void =>
         return
 
     statBlock := sum character, kart, wheel, glider
-    document.getElementById('land-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.land * 100/6}%`
-    document.getElementById('land-speed-value')!.textContent = String statBlock.speed.land
-    document.getElementById('water-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.water * 100/6}%`
-    document.getElementById('water-speed-value')!.textContent = String statBlock.speed.water
-    document.getElementById('air-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.air * 100/6}%`
-    document.getElementById('air-speed-value')!.textContent = String statBlock.speed.air
-    document.getElementById('antigrav-speed-prev')!.style.setProperty '--meter-length', `${statBlock.speed.antigrav * 100/6}%`
-    document.getElementById('antigrav-speed-value')!.textContent = String statBlock.speed.antigrav
-    document.getElementById('accel-prev')!.style.setProperty '--meter-length', `${statBlock.accel * 100/6}%`
-    document.getElementById('accel-value')!.textContent = String statBlock.accel
-    document.getElementById('weight-prev')!.style.setProperty '--meter-length', `${statBlock.weight * 100/6}%`
-    document.getElementById('weight-value')!.textContent = String statBlock.weight
-    document.getElementById('land-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.land * 100/6}%`
-    document.getElementById('land-handling-value')!.textContent = String statBlock.handling.land
-    document.getElementById('water-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.water * 100/6}%`
-    document.getElementById('water-handling-value')!.textContent = String statBlock.handling.water
-    document.getElementById('air-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.air * 100/6}%`
-    document.getElementById('air-handling-value')!.textContent = String statBlock.handling.air
-    document.getElementById('antigrav-handling-prev')!.style.setProperty '--meter-length', `${statBlock.handling.antigrav * 100/6}%`
-    document.getElementById('antigrav-handling-value')!.textContent = String statBlock.handling.antigrav
-    document.getElementById('traction-prev')!.style.setProperty '--meter-length', `${statBlock.traction * 100/6}%`
-    document.getElementById('traction-value')!.textContent = String statBlock.traction
-    document.getElementById('mini-turbo-prev')!.style.setProperty '--meter-length', `${statBlock.miniTurbo * 100/6}%`
-    document.getElementById('mini-turbo-value')!.textContent = String statBlock.miniTurbo
-    document.getElementById('invuln-prev')!.style.setProperty '--meter-length', `${statBlock.invuln * 100/6}%`
-    document.getElementById('invuln-value')!.textContent = String statBlock.invuln
+    landSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.land * 100/6}%`
+    document.getElementById('land-speed-value')!.textContent = landSpeedMeter.ariaValueNow = String statBlock.speed.land
+    waterSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.water * 100/6}%`
+    document.getElementById('water-speed-value')!.textContent = waterSpeedMeter.ariaValueNow = String statBlock.speed.water
+    airSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.air * 100/6}%`
+    document.getElementById('air-speed-value')!.textContent = airSpeedMeter.ariaValueNow = String statBlock.speed.air
+    antigravSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.antigrav * 100/6}%`
+    document.getElementById('antigrav-speed-value')!.textContent = antigravSpeedMeter.ariaValueNow = String statBlock.speed.antigrav
+    accelMeter.style.setProperty '--meter-length', `${statBlock.accel * 100/6}%`
+    document.getElementById('accel-value')!.textContent = accelMeter.ariaValueNow = String statBlock.accel
+    weightMeter.style.setProperty '--meter-length', `${statBlock.weight * 100/6}%`
+    document.getElementById('weight-value')!.textContent = weightMeter.ariaValueNow = String statBlock.weight
+    landHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.land * 100/6}%`
+    document.getElementById('land-handling-value')!.textContent = landHandlingMeter.ariaValueNow = String statBlock.handling.land
+    waterHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.water * 100/6}%`
+    document.getElementById('water-handling-value')!.textContent = waterHandlingMeter.ariaValueNow = String statBlock.handling.water
+    airHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.air * 100/6}%`
+    document.getElementById('air-handling-value')!.textContent = airHandlingMeter.ariaValueNow = String statBlock.handling.air
+    antigravHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.antigrav * 100/6}%`
+    document.getElementById('antigrav-handling-value')!.textContent = antigravHandlingMeter.ariaValueNow = String statBlock.handling.antigrav
+    tractionMeter.style.setProperty '--meter-length', `${statBlock.traction * 100/6}%`
+    document.getElementById('traction-value')!.textContent = tractionMeter.ariaValueNow = String statBlock.traction
+    miniTurboMeter.style.setProperty '--meter-length', `${statBlock.miniTurbo * 100/6}%`
+    document.getElementById('mini-turbo-value')!.textContent = miniTurboMeter.ariaValueNow = String statBlock.miniTurbo
+    invulnMeter.style.setProperty '--meter-length', `${statBlock.invuln * 100/6}%`
+    document.getElementById('invuln-value')!.textContent = invulnMeter.ariaValueNow = String statBlock.invuln
 
 updatePreview()
 

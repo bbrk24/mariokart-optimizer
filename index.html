@@ -16,20 +16,20 @@
       <table>
         <thead>
           <tr>
-            <th>Stat</th>
-            <th>Min</th>
-            <th>Max</th>
-            <th>Optimize?</th>
+            <th scope="col">Stat</th>
+            <th scope="col">Min</th>
+            <th scope="col">Max</th>
+            <th scope="col">Optimize?</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Land Speed</td>
+            <td>Land speed</td>
             <td>
-              <input id="land-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="land-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min land speed" />
             </td>
             <td>
-              <input id="land-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="land-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max land speed" />
             </td>
             <td>
               <select id="land-speed-opt">
@@ -40,12 +40,12 @@
             </td>
           </tr>
           <tr>
-            <td>Water Speed</td>
+            <td>Water speed</td>
             <td>
-              <input id="water-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="water-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min water speed" />
             </td>
             <td>
-              <input id="water-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="water-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max water speed" />
             </td>
             <td>
               <select id="water-speed-opt">
@@ -56,12 +56,12 @@
             </td>
           </tr>
           <tr>
-            <td>Air Speed</td>
+            <td>Air speed</td>
             <td>
-              <input id="air-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="air-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min air speed" />
             </td>
             <td>
-              <input id="air-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="air-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max air speed" />
             </td>
             <td>
               <select id="air-speed-opt">
@@ -72,12 +72,12 @@
             </td>
           </tr>
           <tr>
-            <td>Antigravity Speed</td>
+            <td>Antigravity speed</td>
             <td>
-              <input id="antigrav-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="antigrav-speed-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min antigravity speed" />
             </td>
             <td>
-              <input id="antigrav-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="antigrav-speed-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max antigravity speed"/>
             </td>
             <td>
               <select id="antigrav-speed-opt">
@@ -90,10 +90,10 @@
           <tr>
             <td>Acceleration</td>
             <td>
-              <input id="accel-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="accel-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min acceleration" />
             </td>
             <td>
-              <input id="accel-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="accel-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max acceleration" />
             </td>
             <td>
               <select id="accel-opt">
@@ -106,10 +106,10 @@
           <tr>
             <td>Weight</td>
             <td>
-              <input id="weight-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="weight-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min weight" />
             </td>
             <td>
-              <input id="weight-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="weight-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max weight" />
             </td>
             <td>
               <select id="weight-opt">
@@ -120,12 +120,12 @@
             </td>
           </tr>
           <tr>
-            <td>Land Handling</td>
+            <td>Land handling</td>
             <td>
-              <input id="land-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="land-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min land handling" />
             </td>
             <td>
-              <input id="land-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="land-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max land handling" />
             </td>
             <td>
               <select id="land-handling-opt">
@@ -136,12 +136,12 @@
             </td>
           </tr>
           <tr>
-            <td>Water Handling</td>
+            <td>Water handling</td>
             <td>
-              <input id="water-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="water-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min water handling" />
             </td>
             <td>
-              <input id="water-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="water-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max water handling" />
             </td>
             <td>
               <select id="water-handling-opt">
@@ -152,12 +152,12 @@
             </td>
           </tr>
           <tr>
-            <td>Air Handling</td>
+            <td>Air handling</td>
             <td>
-              <input id="air-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="air-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min air handling" />
             </td>
             <td>
-              <input id="air-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="air-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max air handling" />
             </td>
             <td>
               <select id="air-handling-opt">
@@ -168,12 +168,12 @@
             </td>
           </tr>
           <tr>
-            <td>Antigravity Handling</td>
+            <td>Antigravity handling</td>
             <td>
-              <input id="antigrav-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="antigrav-handling-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min antigravity handling" />
             </td>
             <td>
-              <input id="antigrav-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="antigrav-handling-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max antigravity handling" />
             </td>
             <td>
               <select id="antigrav-handling-opt">
@@ -186,10 +186,10 @@
           <tr>
             <td>Traction</td>
             <td>
-              <input id="traction-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="traction-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min traction" />
             </td>
             <td>
-              <input id="traction-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="traction-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max traction" />
             </td>
             <td>
               <select id="traction-opt">
@@ -202,10 +202,10 @@
           <tr>
             <td>Mini-Turbo</td>
             <td>
-              <input id="mini-turbo-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="mini-turbo-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min mini-turbo" />
             </td>
             <td>
-              <input id="mini-turbo-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="mini-turbo-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max mini-turbo" />
             </td>
             <td>
               <select id="mini-turbo-opt">
@@ -218,10 +218,10 @@
           <tr>
             <td>Invulnerability</td>
             <td>
-              <input id="invuln-min" type="number" min="0" max="5.75" step="0.25" value="0" />
+              <input id="invuln-min" type="number" min="0" max="5.75" step="0.25" value="0" aria-label="min invulnerability" />
             </td>
             <td>
-              <input id="invuln-max" type="number" min="0.25" max="6" step="0.25" value="6" />
+              <input id="invuln-max" type="number" min="0.25" max="6" step="0.25" value="6" aria-label="max invulnerability" />
             </td>
             <td>
               <select id="invuln-opt">
@@ -254,10 +254,10 @@
     <table>
       <thead>
         <tr>
-          <th>Character</th>
-          <th>Kart</th>
-          <th>Wheels</th>
-          <th>Glider</th>
+          <th scope="col">Character</th>
+          <th scope="col">Kart</th>
+          <th scope="col">Wheels</th>
+          <th scope="col">Glider</th>
         </tr>
       </thead>
       <tbody id="output">
@@ -275,95 +275,212 @@
       <table>
         <tbody>
           <tr>
-            <td>Land speed</td>
             <td>
-              <div class="meter" id="land-speed-prev"></div>
+              <label id="land-speed-label">Land speed</label>
             </td>
-            <td id="land-speed-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="land-speed-prev"
+                role="meter"
+                aria-labelledby="land-speed-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="land-speed-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Water speed</td>
             <td>
-              <div class="meter" id="water-speed-prev"></div>
+              <label id="water-speed-label">Water speed</label>
             </td>
-            <td id="water-speed-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="water-speed-prev"
+                role="meter"
+                aria-labelledby="water-speed-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="water-speed-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Air speed</td>
             <td>
-              <div class="meter" id="air-speed-prev"></div>
+              <label id="air-speed-label">Air speed</label>
             </td>
-            <td id="air-speed-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="air-speed-prev"
+                role="meter"
+                aria-labelledby="air-speed-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="air-speed-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Antigravity speed</td>
             <td>
-              <div class="meter" id="antigrav-speed-prev"></div>
+              <label id="antigrav-speed-label">Antigravity speed</label>
             </td>
-            <td id="antigrav-speed-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="antigrav-speed-prev"
+                role="meter"
+                aria-labelledby="antigrav-speed-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="antigrav-speed-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Acceleration</td>
             <td>
-              <div class="meter" id="accel-prev"></div>
+              <label id="accel-label">Acceleration</label>
             </td>
-            <td id="accel-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="accel-prev"
+                role="meter"
+                aria-labelledby="accel-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="accel-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Weight</td>
             <td>
-              <div class="meter" id="weight-prev"></div>
+              <label id="weight-label">Weight</label>
             </td>
-            <td id="weight-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="weight-prev"
+                role="meter"
+                aria-labelledby="weight-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="weight-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Land handling</td>
             <td>
-              <div class="meter" id="land-handling-prev"></div>
+              <label id="land-handling-label">Land handling</label>
             </td>
-            <td id="land-handling-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="land-handling-prev"
+                role="meter"
+                aria-labelledby="land-handling-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="land-handling-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Water handling</td>
             <td>
-              <div class="meter" id="water-handling-prev"></div>
+              <label id="water-handling-label">Water handling</label>
             </td>
-            <td id="water-handling-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="water-handling-prev"
+                role="meter"
+                aria-labelledby="water-handling-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="water-handling-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Air handling</td>
             <td>
-              <div class="meter" id="air-handling-prev"></div>
+              <label id="air-handling-label">Air handling</label>
             </td>
-            <td id="air-handling-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="air-handling-prev"
+                role="meter"
+                aria-labelledby="air-handling-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="air-handling-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Antigravity handling</td>
             <td>
-              <div class="meter" id="antigrav-handling-prev"></div>
+              <label id="antigrav-handling-label">Antigravity handling</label>
             </td>
-            <td id="antigrav-handling-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="antigrav-handling-prev"
+                role="meter"
+                aria-labelledby="antigrav-handling-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="antigrav-handling-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Traction</td>
             <td>
-              <div class="meter" id="traction-prev"></div>
+              <label id="traction-label">Traction</label>
             </td>
-            <td id="traction-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="traction-prev"
+                role="meter"
+                aria-labelledby="traction-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="traction-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Mini-Turbo</td>
             <td>
-              <div class="meter" id="mini-turbo-prev"></div>
+              <label id="mini-turbo-label">Mini-Turbo</label>
             </td>
-            <td id="mini-turbo-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="mini-turbo-prev"
+                role="meter"
+                aria-labelledby="mini-turbo-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="mini-turbo-value" aria-hidden="true"></td>
           </tr>
           <tr>
-            <td>Invulnerability</td>
             <td>
-              <div class="meter" id="invuln-prev"></div>
+              <label id="invuln-label">Invulnerability</label>
             </td>
-            <td id="invuln-value"></td>
+            <td>
+              <div
+                class="meter"
+                id="invuln-prev"
+                role="meter"
+                aria-labelledby="invuln-label"
+                aria-valuemin="0"
+                aria-valuemax="6"
+              ></div>
+            </td>
+            <td id="invuln-value" aria-hidden="true"></td>
           </tr>
         </tbody>
       </table>

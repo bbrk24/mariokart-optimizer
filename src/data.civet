@@ -7,8 +7,10 @@ responsePromise := new Promise<string> (resolve, reject) =>
     req.addEventListener 'load', -> resolve @responseText
     req.addEventListener 'error', (e) -> reject new XHRError 'Failed to fetch data', @, e
 req.open 'GET', './data.json'
+req.setRequestHeader 'Accept', 'application/json, application/*;q=0.9, */*;q=0.8'
 req.send()
 responseText := await responsePromise
+// using JSON.parse instead of setting responseType to get a thrown Error instead of null
 response: YamlData := JSON.parse responseText
 
 export default response
