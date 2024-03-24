@@ -324,7 +324,12 @@ form.addEventListener
     { +passive }
 
 document.querySelectorAll<HTMLElement> '.info'
-    .forEach .addEventListener
-        'click'
-        -> alert @title
-        { +passive }
+    .forEach (el) =>
+        el.addEventListener
+            'click'
+            -> alert @title
+            { +passive }
+        el.addEventListener
+            'keypress'
+            (e) -> if e.key is 'Enter' or e.key is ' ' then alert @title
+            { +passive }
