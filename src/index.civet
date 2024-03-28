@@ -174,7 +174,9 @@ updatePreview := :void =>
 
     unless character? and kart? and wheel? and glider? and not imgError
         document.querySelectorAll<HTMLElement> '.meter'
-            .forEach .style.cssText = ''
+            .forEach (meter): void =>
+                meter.style.removeProperty '--meter-length'
+                meter.ariaValueNow = null
         document.querySelectorAll<HTMLTableCellElement> '#stats-display td:last-child'
             .forEach .textContent = ''
         return
