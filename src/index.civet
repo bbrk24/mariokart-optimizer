@@ -183,31 +183,44 @@ updatePreview := :void =>
 
     statBlock := sum character, kart, wheel, glider
     landSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.land * 100/6}%`
-    document.getElementById('land-speed-value')!.textContent = landSpeedMeter.ariaValueNow = String statBlock.speed.land
+    document.getElementById('land-speed-value')!.textContent =
+        landSpeedMeter.ariaValueNow = String statBlock.speed.land
     waterSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.water * 100/6}%`
-    document.getElementById('water-speed-value')!.textContent = waterSpeedMeter.ariaValueNow = String statBlock.speed.water
+    document.getElementById('water-speed-value')!.textContent =
+        waterSpeedMeter.ariaValueNow = String statBlock.speed.water
     airSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.air * 100/6}%`
-    document.getElementById('air-speed-value')!.textContent = airSpeedMeter.ariaValueNow = String statBlock.speed.air
+    document.getElementById('air-speed-value')!.textContent =
+        airSpeedMeter.ariaValueNow = String statBlock.speed.air
     antigravSpeedMeter.style.setProperty '--meter-length', `${statBlock.speed.antigrav * 100/6}%`
-    document.getElementById('antigrav-speed-value')!.textContent = antigravSpeedMeter.ariaValueNow = String statBlock.speed.antigrav
+    document.getElementById('antigrav-speed-value')!.textContent =
+        antigravSpeedMeter.ariaValueNow = String statBlock.speed.antigrav
     accelMeter.style.setProperty '--meter-length', `${statBlock.accel * 100/6}%`
-    document.getElementById('accel-value')!.textContent = accelMeter.ariaValueNow = String statBlock.accel
+    document.getElementById('accel-value')!.textContent =
+        accelMeter.ariaValueNow = String statBlock.accel
     weightMeter.style.setProperty '--meter-length', `${statBlock.weight * 100/6}%`
-    document.getElementById('weight-value')!.textContent = weightMeter.ariaValueNow = String statBlock.weight
+    document.getElementById('weight-value')!.textContent =
+        weightMeter.ariaValueNow = String statBlock.weight
     landHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.land * 100/6}%`
-    document.getElementById('land-handling-value')!.textContent = landHandlingMeter.ariaValueNow = String statBlock.handling.land
+    document.getElementById('land-handling-value')!.textContent =
+        landHandlingMeter.ariaValueNow = String statBlock.handling.land
     waterHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.water * 100/6}%`
-    document.getElementById('water-handling-value')!.textContent = waterHandlingMeter.ariaValueNow = String statBlock.handling.water
+    document.getElementById('water-handling-value')!.textContent =
+        waterHandlingMeter.ariaValueNow = String statBlock.handling.water
     airHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.air * 100/6}%`
-    document.getElementById('air-handling-value')!.textContent = airHandlingMeter.ariaValueNow = String statBlock.handling.air
+    document.getElementById('air-handling-value')!.textContent =
+        airHandlingMeter.ariaValueNow = String statBlock.handling.air
     antigravHandlingMeter.style.setProperty '--meter-length', `${statBlock.handling.antigrav * 100/6}%`
-    document.getElementById('antigrav-handling-value')!.textContent = antigravHandlingMeter.ariaValueNow = String statBlock.handling.antigrav
+    document.getElementById('antigrav-handling-value')!.textContent =
+        antigravHandlingMeter.ariaValueNow = String statBlock.handling.antigrav
     tractionMeter.style.setProperty '--meter-length', `${statBlock.traction * 100/6}%`
-    document.getElementById('traction-value')!.textContent = tractionMeter.ariaValueNow = String statBlock.traction
+    document.getElementById('traction-value')!.textContent =
+        tractionMeter.ariaValueNow = String statBlock.traction
     miniTurboMeter.style.setProperty '--meter-length', `${statBlock.miniTurbo * 100/6}%`
-    document.getElementById('mini-turbo-value')!.textContent = miniTurboMeter.ariaValueNow = String statBlock.miniTurbo
+    document.getElementById('mini-turbo-value')!.textContent =
+        miniTurboMeter.ariaValueNow = String statBlock.miniTurbo
     invulnMeter.style.setProperty '--meter-length', `${statBlock.invuln * 100/6}%`
-    document.getElementById('invuln-value')!.textContent = invulnMeter.ariaValueNow = String statBlock.invuln
+    document.getElementById('invuln-value')!.textContent =
+        invulnMeter.ariaValueNow = String statBlock.invuln
 
 updatePreview()
 
@@ -249,7 +262,7 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                         ||> .type = 'checkbox'
                         ||> .addEventListener
                             'change'
-                            ->
+                            :void ->
                                 if @checked
                                     menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
                                         .forEach .checked = true
@@ -283,7 +296,7 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                         checkBox := document.createElement 'input' ||> .type = 'checkbox'
                         checkBox.checked = currName is in includedNames
                         index := indices[i]
-                        checkBox.addEventListener 'change', ->
+                        checkBox.addEventListener 'change', :void ->
                             // @ts-ignore shut up
                             limitedNames: string[] := limitedData[name][index][name]
                             if @checked
