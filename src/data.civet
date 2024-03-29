@@ -1,16 +1,8 @@
 type { YamlData } from ./yamlTypes.civet
-XHRError from ./xhrError.civet
 
-req := new XMLHttpRequest
-responsePromise := new Promise<string> (resolve, reject) =>
-    req.addEventListener 'progress', console.info
-    req.addEventListener 'load', -> resolve @responseText
-    req.addEventListener 'error', (e) -> reject new XHRError 'Failed to fetch data', @, e
-req.open 'GET', './data.json'
-req.setRequestHeader 'Accept', 'application/json, application/*;q=0.9, */*;q=0.8'
-req.send()
-responseText := await responsePromise
-// using JSON.parse instead of setting responseType to get a thrown Error instead of null
-response: YamlData := JSON.parse responseText
+response := await fetch './data.json',
+    headers: Accept: 'application/json, application/*;q=0.9, */*;q=0.8'
 
-export default response
+data: YamlData := await response.json()
+
+export default data
