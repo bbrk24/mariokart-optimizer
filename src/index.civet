@@ -148,7 +148,7 @@ updatePreview := :void =>
     rivalImgContainer.innerHTML = ''
     imgError .= false
 
-    if characterName := characterDropdown.selectedOptions.0?.dataset.name
+    if characterName? := characterDropdown.selectedOptions.0?.dataset.name
         characterImg.src = `./img/${characterName}.png`
         for rival of data.rivals[characterName]
             rival |> cache.getImage |> rivalImgContainer.appendChild
@@ -156,17 +156,17 @@ updatePreview := :void =>
         characterImg.src = './img/unknown.png'
         imgError = true
 
-    if kartName := kartDropdown.selectedOptions.0?.dataset.name
+    if kartName? := kartDropdown.selectedOptions.0?.dataset.name
         kartImg.src = `./img/${kartName}.png`
     else
         kartImg.src = './img/unknown.png'
         imgError = true
-    if wheelName := wheelDropdown.selectedOptions.0?.dataset.name
+    if wheelName? := wheelDropdown.selectedOptions.0?.dataset.name
         wheelImg.src = `./img/${wheelName}.png`
     else
         wheelImg.src = './img/unknown.png'
         imgError = true
-    if gliderName := gliderDropdown.selectedOptions.0?.dataset.name
+    if gliderName? := gliderDropdown.selectedOptions.0?.dataset.name
         gliderImg.src = `./img/${gliderName}.png`
     else
         gliderImg.src = './img/unknown.png'
@@ -320,8 +320,8 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                                         allCheckbox.indeterminate = true
 
                         label := document.createElement 'label'
+                            ||> .textContent = currName.replace rgx, ' $&'
                         label.htmlFor = checkBox.id = `checkbox-${currName}`
-                        label.textContent = currName.replace rgx, ' $&'
 
                         li.appendChild checkBox
                         li.appendChild label
