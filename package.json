@@ -2,7 +2,7 @@
     "name": "mariokart-optimizer",
     "private": true,
     "dependencies": {
-        "@danielx/civet": "~0.7.0",
+        "@danielx/civet": "~0.7.12",
         "js-yaml": "^4.1.0"
     },
     "scripts": {
