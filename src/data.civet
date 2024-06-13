@@ -1,8 +1,12 @@
 type { YamlData } from ./yamlTypes.civet
 
-response := await fetch './data.json',
-    headers: Accept: 'application/json, application/*;q=0.9, */*;q=0.8'
+opts := headers: Accept: 'application/json, application/*;q=0.9, */*;q=0.8'
 
-data: YamlData := await response.json()
+switchResponsePromise := fetch './data/switch.json', opts
+wiiUResponsePromise := fetch './data/wiiU.json', opts
+
+data: Record<'switch' | 'wiiU', YamlData> :=
+    await.all [switchResponsePromise, wiiUResponsePromise].map .then .json()
+    |> (a) => switch: a.0, wiiU: a.1
 
 export default data

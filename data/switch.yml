@@ -1215,7 +1215,6 @@ rivals:
     - Isabelle
   Isabelle:
     - VillagerGirl
-  Link: []
   Rosalina:
     - Toad
   TanookiMario:
@@ -1224,7 +1223,6 @@ rivals:
     - TanookiMario
   Birdo:
     - Yoshi
-  Lakitu: []
   Toadette:
     - Yoshi
     - Wario
@@ -1265,9 +1263,6 @@ rivals:
     - DonkeyKong
   Pauline:
     - DonkeyKong
-  LightMii: []
-  MediumMii: []
-  HeavyMii: []
   InklingBoy:
     - InklingGirl
   VillagerGirl:

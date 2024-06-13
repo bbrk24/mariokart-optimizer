@@ -6,7 +6,8 @@ getFormValues from ./getFormValues.civet
 cache from ./imageCache.civet
 type { BaseStatBlock } from ./yamlTypes.civet
 
-limitedData .= structuredClone data
+currData .= data.switch
+limitedData .= structuredClone currData
 
 rgx := /(?<=[^A-Z])[A-Z]|(?!^)[A-Z][a-z]|(?<=\D)\d/g
 
@@ -64,13 +65,6 @@ characterLabel := document.createElement 'label'
 characterLabel.textContent = 'Character'
 characterDropdown := document.createElement 'select'
 characterLabel.htmlFor = characterDropdown.id = 'character-select'
-for each statBlock, i of data.characters
-    for name of statBlock.characters
-        document.createElement 'option'
-            ||> .value = String i
-            ||> .dataset.name = name
-            ||> .text = name.replace rgx, ' $&'
-            |> characterDropdown.appendChild
 kartPreview.append characterLabel, ' ', characterDropdown
 characterImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
@@ -79,13 +73,6 @@ kartLabel := document.createElement 'label'
 kartLabel.textContent = 'Kart'
 kartDropdown := document.createElement 'select'
 kartLabel.htmlFor = kartDropdown.id = 'kart-select'
-for each statBlock, i of data.karts
-    for name of statBlock.karts
-        document.createElement 'option'
-            ||> .value = String i
-            ||> .dataset.name = name
-            ||> .text = name.replace rgx, ' $&'
-            |> kartDropdown.appendChild
 kartPreview.append kartLabel, ' ', kartDropdown
 kartImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
@@ -94,13 +81,6 @@ wheelLabel := document.createElement 'label'
 wheelLabel.textContent = 'Wheels'
 wheelDropdown := document.createElement 'select'
 wheelLabel.htmlFor = wheelDropdown.id = 'wheel-select'
-for each statBlock, i of data.wheels
-    for name of statBlock.wheels
-        document.createElement 'option'
-            ||> .value = String i
-            ||> .dataset.name = name
-            ||> .text = name.replace rgx, ' $&'
-            |> wheelDropdown.appendChild
 kartPreview.append wheelLabel, ' ', wheelDropdown
 wheelImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
@@ -109,16 +89,43 @@ gliderLabel := document.createElement 'label'
 gliderLabel.textContent = 'Glider'
 gliderDropdown := document.createElement 'select'
 gliderLabel.htmlFor = gliderDropdown.id = 'glider-select'
-for each statBlock, i of data.gliders
-    for name of statBlock.gliders
-        document.createElement 'option'
-            ||> .value = String i
-            ||> .dataset.name = name
-            ||> .text = name.replace rgx, ' $&'
-            |> gliderDropdown.appendChild
 kartPreview.append gliderLabel, ' ', gliderDropdown
 gliderImg := document.createElement 'img' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
+
+populateDropdowns := =>
+    characterDropdown.innerHTML = ''
+    for each statBlock, i of currData.characters
+        for name of statBlock.characters
+            document.createElement 'option'
+                ||> .value = String i
+                ||> .dataset.name = name
+                ||> .text = name.replace rgx, ' $&'
+                |> characterDropdown.appendChild
+    kartDropdown.innerHTML = ''
+    for each statBlock, i of currData.karts
+        for name of statBlock.karts
+            document.createElement 'option'
+                ||> .value = String i
+                ||> .dataset.name = name
+                ||> .text = name.replace rgx, ' $&'
+                |> kartDropdown.appendChild
+    wheelDropdown.innerHTML = ''
+    for each statBlock, i of currData.wheels
+        for name of statBlock.wheels
+            document.createElement 'option'
+                ||> .value = String i
+                ||> .dataset.name = name
+                ||> .text = name.replace rgx, ' $&'
+                |> wheelDropdown.appendChild
+    gliderDropdown.innerHTML = ''
+    for each statBlock, i of currData.gliders
+        for name of statBlock.gliders
+            document.createElement 'option'
+                ||> .value = String i
+                ||> .dataset.name = name
+                ||> .text = name.replace rgx, ' $&'
+                |> gliderDropdown.appendChild
 
 kartPreview.appendChild document.createElement 'br'
 
@@ -140,17 +147,17 @@ miniTurboMeter := document.getElementById('mini-turbo-prev')!
 invulnMeter := document.getElementById('invuln-prev')!
 
 updatePreview := :void =>
-    character?: BaseStatBlock := data.characters[+characterDropdown.value]
-    kart?: BaseStatBlock := data.karts[+kartDropdown.value]
-    wheel?: BaseStatBlock := data.wheels[+wheelDropdown.value]
-    glider?: BaseStatBlock := data.gliders[+gliderDropdown.value]
+    character?: BaseStatBlock := currData.characters[+characterDropdown.value]
+    kart?: BaseStatBlock := currData.karts[+kartDropdown.value]
+    wheel?: BaseStatBlock := currData.wheels[+wheelDropdown.value]
+    glider?: BaseStatBlock := currData.gliders[+gliderDropdown.value]
 
     rivalImgContainer.innerHTML = ''
     imgError .= false
 
     if characterName? := characterDropdown.selectedOptions.0?.dataset.name
         characterImg.src = `./img/${characterName}.png`
-        for rival of data.rivals[characterName]
+        for rival of currData.rivals[characterName] ?? []
             rival |> cache.getImage |> rivalImgContainer.appendChild
     else
         characterImg.src = './img/unknown.png'
@@ -221,8 +228,6 @@ updatePreview := :void =>
     invulnMeter.style.setProperty '--meter-length', `${statBlock.invuln * 100/6}%`
     document.getElementById('invuln-value')!.textContent =
         invulnMeter.ariaValueNow = String statBlock.invuln
-
-updatePreview()
 
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
@@ -333,10 +338,25 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
 form.addEventListener
     'reset'
     =>
-        limitedData = structuredClone data
+        limitedData = structuredClone currData
         menu.innerHTML = ''
         currMenu = undefined
     { +passive }
+
+selectVersion := (this: HTMLSelectElement) ->
+    return unless @value in data
+    currData = data[@value as 'switch' | 'wiiU']
+
+    limitedData = structuredClone currData
+    menu.innerHTML = ''
+    currMenu = undefined
+
+    populateDropdowns()
+    updatePreview()
+
+versionSelect := document.getElementById('version') as HTMLSelectElement
+versionSelect.addEventListener 'change', selectVersion, { +passive }
+selectVersion.call versionSelect
 
 document.querySelectorAll<HTMLElement> '.info'
     .forEach (el) =>
