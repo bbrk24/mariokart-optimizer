@@ -255,9 +255,9 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
 
                     currMenu = name
                     // @ts-ignore shut up
-                    totalNames: string[] := data[name].flatMap &[name]
+                    totalNames: string[] := currData[name].flatMap &[name]
                     // @ts-ignore shut up
-                    indices := data[name].flatMap (el, i) => Array<number>(el[name].#).fill i
+                    indices := currData[name].flatMap (el, i) => Array<number>(el[name].#).fill i
                     // @ts-ignore shut up
                     includedNames: string[] := limitedData[name].flatMap &[name]
 
@@ -272,7 +272,7 @@ installLimitListener := (name: 'characters' | 'karts' | 'wheels' | 'gliders') =>
                                     menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
                                         .forEach .checked = true
                                     // @ts-ignore It's just not correlating the LHS (&) with the RHS (|)
-                                    limitedData[name] = structuredClone data[name]
+                                    limitedData[name] = structuredClone currData[name]
                                     selectedCount = total
                                 else
                                     menu.querySelectorAll<HTMLInputElement> 'input[type="checkbox"]'
