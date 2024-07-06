@@ -94,6 +94,11 @@ gliderImg := document.createElement 'img' |> kartPreview.appendChild
 kartPreview.appendChild document.createElement 'br'
 
 populateDropdowns := =>
+    character := characterDropdown.selectedOptions.0?.dataset.name
+    kart := kartDropdown.selectedOptions.0?.dataset.name
+    wheel := wheelDropdown.selectedOptions.0?.dataset.name
+    glider := gliderDropdown.selectedOptions.0?.dataset.name
+
     characterDropdown.innerHTML = ''
     for each statBlock, i of currData.characters
         for name of statBlock.characters
@@ -126,6 +131,10 @@ populateDropdowns := =>
                 ||> .dataset.name = name
                 ||> .text = name.replace rgx, ' $&'
                 |> gliderDropdown.appendChild
+
+    if character? or kart? or wheel? or glider?
+        // @ts-expect-error it's fine
+        setPreviewedKart character, kart, wheel, glider
 
 kartPreview.appendChild document.createElement 'br'
 
@@ -232,10 +241,10 @@ updatePreview := :void =>
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
 function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
-    characterDropdown.selectedIndex = Array::findIndex.call characterDropdown.options, .dataset.name is character
-    kartDropdown.selectedIndex = Array::findIndex.call kartDropdown.options, .dataset.name is kart
-    wheelDropdown.selectedIndex = Array::findIndex.call wheelDropdown.options, .dataset.name is wheels
-    gliderDropdown.selectedIndex = Array::findIndex.call gliderDropdown.options, .dataset.name is glider
+    characterDropdown.selectedIndex = Math.max 0, Array::findIndex.call characterDropdown.options, .dataset.name is character
+    kartDropdown.selectedIndex = Math.max 0, Array::findIndex.call kartDropdown.options, .dataset.name is kart
+    wheelDropdown.selectedIndex = Math.max 0, Array::findIndex.call wheelDropdown.options, .dataset.name is wheels
+    gliderDropdown.selectedIndex = Math.max 0, Array::findIndex.call gliderDropdown.options, .dataset.name is glider
     updatePreview()
 
 menu := document.querySelector('menu')!
@@ -344,7 +353,9 @@ form.addEventListener
     { +passive }
 
 selectVersion := (this: HTMLSelectElement) ->
-    return unless @value in data
+    unless @value in data
+        // Force an option to be selected
+        @selectedIndex = 0
     currData = data[@value as 'switch' | 'wiiU']
 
     limitedData = structuredClone currData
