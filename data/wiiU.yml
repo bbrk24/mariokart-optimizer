@@ -216,7 +216,7 @@ karts:
       water: 0.5
       air: 0.25
       antigrav: 0.5
-    traction: 0.75
+    traction: 0.25
     miniTurbo: 0.25
     invuln: 0
     inwardDrift: false
