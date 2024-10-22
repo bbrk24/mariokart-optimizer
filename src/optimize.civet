@@ -8,7 +8,7 @@ interface Limits
 
 OptimizeMap<T> ::= { [K in keyof T]: T[K] < number ? Limits : OptimizeMap<T[K]> }
 
-export OptimizeOptions ::= OptimizeMap<Yaml.BaseStatBlock>
+export OptimizeOptions ::= OptimizeMap Yaml.BaseStatBlock
 
 export sum := <T>(...args: T[]): T =>
     sumHelper := (results: any) => (statBlock: any): void =>

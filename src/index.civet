@@ -42,7 +42,7 @@ form.addEventListener 'submit', (e) =>
     // If there's lots of results, this can take a couple seconds. So batch it and give the UI a chance to catch up.
     appendPartialResults := (startIndex: number): void =>
         batchSize := 1000
-        for i of [startIndex...(startIndex + batchSize)]
+        for i of [startIndex..<(startIndex + batchSize)]
             if i >= results.#
                 timeoutID = undefined
                 return
@@ -133,7 +133,6 @@ populateDropdowns := =>
                 |> gliderDropdown.appendChild
 
     if character? or kart? or wheel? or glider?
-        // @ts-expect-error it's fine
         setPreviewedKart character, kart, wheel, glider
 
 kartPreview.appendChild document.createElement 'br'
@@ -240,7 +239,7 @@ updatePreview := :void =>
 
 [characterDropdown, kartDropdown, wheelDropdown, gliderDropdown].forEach .addEventListener 'change', updatePreview, { +passive }
 
-function setPreviewedKart(character: string, kart: string, wheels: string, glider: string)
+function setPreviewedKart(character: string?, kart: string?, wheels: string?, glider: string?)
     characterDropdown.selectedIndex = Math.max 0, Array::findIndex.call characterDropdown.options, .dataset.name is character
     kartDropdown.selectedIndex = Math.max 0, Array::findIndex.call kartDropdown.options, .dataset.name is kart
     wheelDropdown.selectedIndex = Math.max 0, Array::findIndex.call wheelDropdown.options, .dataset.name is wheels
@@ -352,7 +351,7 @@ form.addEventListener
         currMenu = undefined
     { +passive }
 
-selectVersion := (this: HTMLSelectElement) ->
+selectVersion := (@: HTMLSelectElement) ->
     unless @value in data
         // Force an option to be selected
         @selectedIndex = 0

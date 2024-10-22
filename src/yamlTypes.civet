@@ -31,4 +31,4 @@ export interface YamlData
     karts: KartStatBlock[]
     wheels: WheelStatBlock[]
     gliders: GliderStatBlock[]
-    rivals: Partial<Record<string, string[]>>
+    rivals: Partial Record string, string[]

@@ -2,7 +2,7 @@
     "name": "mariokart-optimizer",
     "private": true,
     "dependencies": {
-        "@danielx/civet": "~0.7.12",
+        "@danielx/civet": "~0.8.6",
         "js-yaml": "^4.1.0"
     },
     "scripts": {
@@ -11,6 +11,6 @@
         "test": "civet --typecheck src/*.civet"
     },
     "devDependencies": {
-        "express": "^4.19.2"
+        "express": "^5.0.1"
     }
 }
