@@ -6,7 +6,7 @@ switchResponsePromise := fetch './data/switch.json', opts
 wiiUResponsePromise := fetch './data/wiiU.json', opts
 
 data: Record 'switch' | 'wiiU', YamlData :=
-    await.all([switchResponsePromise, wiiUResponsePromise].map .then .json())
+    await.all [switchResponsePromise, wiiUResponsePromise].map .then .json()
     |> (a) => switch: a.0, wiiU: a.1
 
 export default data
