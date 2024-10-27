@@ -7,5 +7,5 @@ find data -name '*.yml' | while IFS= read -r filename
 do
     js-yaml "$filename" | tr -d '\n ' >"dist/${filename%.*}.json"
 done
-cp index.html index.css favicon.ico dist/
+cp index.html index.css favicon.png dist/
 cp -r img/ dist/
