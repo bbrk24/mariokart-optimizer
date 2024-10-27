@@ -164,27 +164,27 @@ updatePreview := :void =>
     imgError .= false
 
     if characterName? := characterDropdown.selectedOptions.0?.dataset.name
-        characterImg.src = `./img/${characterName}.png`
+        characterImg.src = `./img/${characterName}.webp`
         for rival of currData.rivals[characterName] ?? []
             rival |> cache.getImage |> rivalImgContainer.appendChild
     else
-        characterImg.src = './img/unknown.png'
+        characterImg.src = './img/unknown.webp'
         imgError = true
 
     if kartName? := kartDropdown.selectedOptions.0?.dataset.name
-        kartImg.src = `./img/${kartName}.png`
+        kartImg.src = `./img/${kartName}.webp`
     else
-        kartImg.src = './img/unknown.png'
+        kartImg.src = './img/unknown.webp'
         imgError = true
     if wheelName? := wheelDropdown.selectedOptions.0?.dataset.name
-        wheelImg.src = `./img/${wheelName}.png`
+        wheelImg.src = `./img/${wheelName}.webp`
     else
-        wheelImg.src = './img/unknown.png'
+        wheelImg.src = './img/unknown.webp'
         imgError = true
     if gliderName? := gliderDropdown.selectedOptions.0?.dataset.name
-        gliderImg.src = `./img/${gliderName}.png`
+        gliderImg.src = `./img/${gliderName}.webp`
     else
-        gliderImg.src = './img/unknown.png'
+        gliderImg.src = './img/unknown.webp'
         imgError = true
 
     unless character? and kart? and wheel? and glider? and not imgError

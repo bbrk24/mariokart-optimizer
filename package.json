@@ -12,5 +12,8 @@
     },
     "devDependencies": {
         "express": "^5.0.1"
+    },
+    "engines": {
+        "node": "^18.18.0 || >=19.0.0"
     }
 }
