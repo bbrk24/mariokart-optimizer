@@ -51,6 +51,10 @@ menu {
   background-color: #00a960;
 }
 
+.animated .meter::before {
+  transition: width 0.5s ease-in-out;
+}
+
 .meter::after {
   position: absolute;
   content: '';

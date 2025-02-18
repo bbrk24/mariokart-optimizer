@@ -378,3 +378,14 @@ document.querySelectorAll<HTMLElement> '.info'
             'keypress'
             (e) -> if e.key is 'Enter' or e.key is ' ' then alert @title
             { +passive }
+
+toggleAnimation := (@: HTMLInputElement): void ->
+    if @checked
+        document.body.classList.add 'animated'
+    else
+        document.body.classList.remove 'animated'
+
+animateCheckbox := document.getElementById('animate') as HTMLInputElement
+animateCheckbox.checked = !matchMedia('(prefers-reduced-motion)').matches
+toggleAnimation.call animateCheckbox
+animateCheckbox.addEventListener 'change', toggleAnimation, { +passive }
