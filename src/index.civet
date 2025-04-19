@@ -66,7 +66,7 @@ characterLabel.textContent = 'Character'
 characterDropdown := document.createElement 'select'
 characterLabel.htmlFor = characterDropdown.id = 'character-select'
 kartPreview.append characterLabel, ' ', characterDropdown
-characterImg := document.createElement 'img' |> kartPreview.appendChild 
+characterImg := document.createElement 'img' ||> .alt = '' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 kartLabel := document.createElement 'label'
@@ -74,7 +74,7 @@ kartLabel.textContent = 'Kart'
 kartDropdown := document.createElement 'select'
 kartLabel.htmlFor = kartDropdown.id = 'kart-select'
 kartPreview.append kartLabel, ' ', kartDropdown
-kartImg := document.createElement 'img' |> kartPreview.appendChild 
+kartImg := document.createElement 'img' ||> .alt = '' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 wheelLabel := document.createElement 'label'
@@ -82,7 +82,7 @@ wheelLabel.textContent = 'Wheels'
 wheelDropdown := document.createElement 'select'
 wheelLabel.htmlFor = wheelDropdown.id = 'wheel-select'
 kartPreview.append wheelLabel, ' ', wheelDropdown
-wheelImg := document.createElement 'img' |> kartPreview.appendChild 
+wheelImg := document.createElement 'img' ||> .alt = '' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 gliderLabel := document.createElement 'label'
@@ -90,7 +90,7 @@ gliderLabel.textContent = 'Glider'
 gliderDropdown := document.createElement 'select'
 gliderLabel.htmlFor = gliderDropdown.id = 'glider-select'
 kartPreview.append gliderLabel, ' ', gliderDropdown
-gliderImg := document.createElement 'img' |> kartPreview.appendChild 
+gliderImg := document.createElement 'img' ||> .alt = '' |> kartPreview.appendChild 
 kartPreview.appendChild document.createElement 'br'
 
 populateDropdowns := =>

@@ -37,7 +37,7 @@ menu {
   height: 0.75em;
   border-radius: 0.5em;
   border: 1px solid rgb(127 127 145 / 51.6%);
-  width: min(18em, calc(100vw - 8.9375em));
+  width: min(18em, calc(100vw - 9.4375em));
   position: relative;
   background-color: rgb(127 127 127 / 16.4%);
   overflow: hidden;
